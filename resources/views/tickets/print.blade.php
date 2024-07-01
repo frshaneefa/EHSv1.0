@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Print Tickets</title>
+    <title>Print Tickets latest</title>
     <style>
         body {
             font-family: Arial, sans-serif;
