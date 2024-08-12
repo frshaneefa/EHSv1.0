@@ -18,10 +18,13 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'phone',
+        'address',
         'password',
         'usertype',
         'agensi_id'
     ];
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -40,6 +43,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'last_login_at' => 'datetime'
     ];
 
     /**
@@ -54,6 +58,18 @@ class User extends Authenticatable
 
     public function agensi()
     {
-        return $this->belongsTo(Agensi::class);
+        return $this->belongsTo(Agensi::class, 'agensi_id'); // Specify the foreign key if it's not the default
     }
+
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class);
+    }
+
+    public function leaveRequests()
+    {
+        return $this->hasMany(LeaveRequest::class);
+    }
+
+
 }

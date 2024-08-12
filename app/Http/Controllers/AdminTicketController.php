@@ -18,11 +18,13 @@ class AdminTicketController extends Controller
 {
     public function index(Request $request)
     {
+        // Initialize the query for fetching tickets
         $tickets = Ticket::query();
 
-        // Filter by Ticket ID
-        if ($request->has('search_ticket_id') && $request->search_ticket_id) {
-            $tickets->where('id', $request->search_ticket_id);
+        // Apply filters based on request parameters
+        if ($request->has('search') && $request->search) {
+            $tickets->where('id', $request->search)
+                    ->orWhere('subject', 'like', '%' . $request->search . '%');
         }
 
         // Filter by Type
@@ -50,13 +52,15 @@ class AdminTicketController extends Controller
             $tickets->whereDate('created_at', $request->search_date);
         }
 
-        // Fetch all the necessary filter options
+        // Fetch distinct filter options
         $types = Ticket::select('type')->distinct()->get()->pluck('type');
         $severities = Ticket::select('severity')->distinct()->get()->pluck('severity');
         $statuses = Ticket::select('status')->distinct()->get()->pluck('status');
 
-        $tickets = $tickets->paginate(10);
+        // Paginate the results
+        $tickets = $tickets->paginate($request->input('per_page', 10));
 
+        // Return the view with the filtered tickets and filter options
         return view('admin.tickets.index', compact('tickets', 'types', 'severities', 'statuses'));
     }
 
@@ -71,6 +75,7 @@ class AdminTicketController extends Controller
 
     public function store(Request $request)
     {
+        // Validate the incoming request
         $data = $request->validate([
             'agensi_tid' => 'required',
             'subject' => 'required|string|max:255',
@@ -80,12 +85,12 @@ class AdminTicketController extends Controller
             'remarks' => 'nullable|string',
             'report_description' => 'required|string',
             'service_details' => 'required|string',
-            'type' => 'required|string|in:pm,cm,cr',   // Validation rule for type
-            'severity' => 'required|string|in:critical,significant,moderate,minor,low', // Validation rule for severity
+            'type' => 'required|string|in:pm,cm,cr',
+            'severity' => 'required|string|in:critical,significant,moderate,minor,low',
             'attachments.*' => 'nullable|file|mimes:doc,docx,xls,xlsx,ppt,pptx,pdf,jpg,jpeg,png',
         ]);
 
-        // Check if attachments are present
+        // Handle attachments
         if ($request->hasFile('attachments')) {
             $attachments = [];
             foreach ($request->file('attachments') as $file) {
@@ -94,31 +99,35 @@ class AdminTicketController extends Controller
             }
             $data['attachments'] = json_encode($attachments);
         } else {
-            // No attachments provided
             $data['attachments'] = null;
         }
 
         // Assign the authenticated user's ID to the 'user_id' field
         $data['user_id'] = auth()->user()->id;
 
-        // Attempt to create the ticket
+        // Attempt to create the ticket and send the email
         try {
+            // Create the ticket
             $ticket = Ticket::create($data);
 
-            // Send email notification
-            Mail::to('ehs.v1mail@gmail.com')->send(new TicketSubmitted($ticket));
+            // Attempt to send the email
+            try {
+                Mail::to('ehs.v1mail@gmail.com')->send(new TicketSubmitted($ticket));
+            } catch (\Exception $mailException) {
+                // Handle email sending failure
+                \Log::error('Email failed to send: ' . $mailException->getMessage());
+                // Redirect to index with an error message
+                return redirect()->route('admin.tickets.index')->with('error', 'Ticket created, but failed to send email notification.');
+            }
 
-            // Success notification
-            Session::flash('success', 'Ticket created successfully.');
+            // Redirect to index with a success message
+            return redirect()->route('admin.tickets.index')->with('success', 'Ticket created and email notification sent successfully.');
 
-            // Redirect back to index or any other page
-            return redirect()->route('admin.tickets.index');
         } catch (\Exception $e) {
-            // Error notification
-            Session::flash('error', 'Failed to create ticket.');
-
-            // Redirect back with error message
-            return redirect()->back()->withInput()->withErrors(['error' => 'Failed to create ticket.']);
+            // Handle ticket creation failure
+            \Log::error('Ticket creation failed: ' . $e->getMessage());
+            // Redirect to index with an error message
+            return redirect()->route('admin.tickets.index')->with('error', 'Failed to create ticket.');
         }
     }
 
@@ -199,6 +208,8 @@ class AdminTicketController extends Controller
 
     public function print(Request $request)
     {
+        // Fetch tickets along with user and agensi relationships
+        $tickets = Ticket::with(['user', 'agensi'])->get();
         // // Get the selected ticket IDs from the query parameter
         $ticketIds = explode(',', $request->query('ticket_ids'));
 

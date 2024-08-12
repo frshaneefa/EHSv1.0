@@ -17,37 +17,51 @@ class TicketController extends Controller
     public function index(Request $request)
     {
         $user = Auth::user();
-
-        // Initialize the tickets query for the authenticated user
         $tickets = Ticket::where('user_id', $user->id);
 
-        // Apply filters based on the request parameters
+        // Apply filters based on request parameters
+        if ($request->has('search') && $request->search) {
+            $tickets->where('id', $request->search)
+                    ->orWhere('subject', 'like', '%' . $request->search . '%');
+        }
+
+        // Filter by Ticket ID
         if ($request->has('search_ticket_id') && $request->search_ticket_id) {
             $tickets->where('id', $request->search_ticket_id);
         }
+
+        // Filter by Type
         if ($request->has('search_type') && $request->search_type) {
             $tickets->where('type', $request->search_type);
         }
+
+        // Filter by Severity
         if ($request->has('search_severity') && $request->search_severity) {
             $tickets->where('severity', $request->search_severity);
         }
+
+        // Filter by Status
         if ($request->has('search_status') && $request->search_status) {
             $tickets->where('status', $request->search_status);
         }
+
+        // Filter by Title
         if ($request->has('search_title') && $request->search_title) {
             $tickets->where('subject', 'like', '%' . $request->search_title . '%');
         }
+
+        // Filter by Date
         if ($request->has('search_date') && $request->search_date) {
             $tickets->whereDate('created_at', $request->search_date);
         }
 
-        // Fetch distinct filter options
+        // Fetch all the necessary filter options
         $types = Ticket::select('type')->distinct()->get()->pluck('type');
         $severities = Ticket::select('severity')->distinct()->get()->pluck('severity');
         $statuses = Ticket::select('status')->distinct()->get()->pluck('status');
 
         // Paginate the results
-        $tickets = $tickets->paginate(10);
+        $tickets = $tickets->paginate($request->input('per_page', 10));;
 
         return view('tickets.index', compact('tickets', 'types', 'severities', 'statuses'));
     }
@@ -89,24 +103,29 @@ class TicketController extends Controller
         // Assign the authenticated user's agensi ID to the 'agensi_tid' field
         $data['agensi_tid'] = auth()->user()->agensi_id;
 
-        // Attempt to create the ticket
+        // Attempt to create the ticket and send the email
         try {
+            // Create the ticket
             $ticket = Ticket::create($data);
 
-            // Send email notification
-            Mail::to('ehs.v1mail@gmail.com')->send(new TicketSubmitted($ticket));
+            // Attempt to send the email
+            try {
+                Mail::to('ehs.v1mail@gmail.com')->send(new TicketSubmitted($ticket));
+            } catch (\Exception $mailException) {
+                // Handle email sending failure
+                \Log::error('Email failed to send: ' . $mailException->getMessage());
+                // Redirect to index with an error message
+                return redirect()->route('tickets.index')->with('error', 'Ticket created, but failed to send email notification.');
+            }
 
-            // Success notification
-            Session::flash('success', 'Ticket created successfully.');
+            // Redirect to index with a success message
+            return redirect()->route('tickets.index')->with('success', 'Ticket created and email notification sent successfully.');
 
-            // Redirect back to index or any other page
-            return redirect()->route('tickets.create');
         } catch (\Exception $e) {
-            // Error notification
-            Session::flash('error', 'Failed to create ticket.');
-
-            // Redirect back with error message
-            return redirect()->back()->withInput()->withErrors(['error' => 'Failed to create ticket.']);
+            // Handle ticket creation failure
+            \Log::error('Ticket creation failed: ' . $e->getMessage());
+            // Redirect to index with an error message
+            return redirect()->route('tickets.index')->with('error', 'Failed to create ticket.');
         }
     }
 

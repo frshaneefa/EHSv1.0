@@ -1,166 +1,106 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            SUBJECT : {{ $ticket->subject }}
-        </h2>
-    </x-slot>
-
+<x-user-layout>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white dark:bg-white-800 border-b border-gray-200 dark:border-gray-700">
-                    <div class="mb-4">
-                        <p>Status: 
-                            @if ($ticket->status === 'submitted')
-                                <span class="status-box status-submitted">Submitted</span>
-                            @elseif ($ticket->status === 'verified')
-                                <span class="status-box status-verified">Verified</span>
-                            @elseif ($ticket->status === 'resolved')
-                                <span class="status-box status-resolved">Resolved</span>
-                            @elseif ($ticket->status === 'closed')
-                                <span class="status-box status-closed">Closed</span>
-                            @else
-                                <span class="status-box">{{ ucfirst($ticket->status) }}</span>
-                            @endif
-                        </p>
-                    </div>
 
-                    <table class="mb-4">
-                        <tbody>
-                            <!-- First Row -->
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap border border-gray-300 dark:border-gray-700 text-center"><strong>Equipment</strong></td>
-                                <td class="px-6 py-4 whitespace-nowrap border border-gray-300 dark:border-gray-700 text-center"><strong>Quantity</strong></td>
-                                <td class="px-6 py-4 whitespace-nowrap border border-gray-300 dark:border-gray-700 text-center"><strong>Part No./Serial No.</strong></td>
-                            </tr>
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap border border-gray-300 dark:border-gray-700 text-center">{{ $ticket->equipment }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap border border-gray-300 dark:border-gray-700 text-center">{{ $ticket->quantity }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap border border-gray-300 dark:border-gray-700 text-center">{{ $ticket->part_no }}</td>
-                            </tr>
-                            <!-- Second Row -->
-                            <tr>
-                                <td colspan="3" class="px-6 py-4 whitespace-nowrap border border-gray-300 dark:border-gray-700 text-center"><strong>Remarks</strong></td>
-                            </tr>
-                            <tr>
-                                <td colspan="3" class="px-6 py-4 whitespace-nowrap border border-gray-300 dark:border-gray-700">{{ $ticket->remarks }}</td>
-                            </tr>
-                            <!-- Third Row -->
-                            <tr>
-                                <td colspan="3" class="px-6 py-4 whitespace-nowrap border border-gray-300 dark:border-gray-700 text-center"><strong>Report Description</strong></td>
-                            </tr>
-                            <tr>
-                                <td colspan="3" class="px-6 py-4 whitespace-nowrap border border-gray-300 dark:border-gray-700">{{ $ticket->report_description }}</td>
-                            </tr>
-                            <!-- Fourth Row -->
-                            <tr>
-                                <td colspan="3" class="px-6 py-4 whitespace-nowrap border border-gray-300 dark:border-gray-700 text-center"><strong>Service Details:</strong></td>
-                            </tr>
-                            <tr>
-                                <td colspan="3" class="px-6 py-4 whitespace-nowrap border border-gray-300 dark:border-gray-700">{{ $ticket->service_details }}</td>
-                            </tr>
-                            <!-- Fifth Row -->
-                            <tr>
-                                <td colspan="3" class="px-6 py-4 whitespace-nowrap border border-gray-300 dark:border-gray-700 text-center">
-                                    <strong>Attachments</strong>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="3" class="px-6 py-4 whitespace-nowrap border border-gray-300 dark:border-gray-700">
-                                    @if ($ticket->attachments)
-                                        @foreach (json_decode($ticket->attachments) as $attachment)
-                                            <a href="{{ asset('storage/' . $attachment) }}">{{ $attachment }}</a><br>
-                                        @endforeach
-                                    @else
-                                        No attachments
-                                    @endif
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <div class="text-center">
-                        <!-- Back Ticket Button -->
-                        <button type="back" class="back-button">
-                            <a href="{{ route('tickets.index') }}">
-                                Back
-                            </a>
-                        </button>
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0">Ticket Details</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="{{ route('tickets.index') }}">Home</a></li>
+                                <li class="breadcrumb-item active">Ticket #{{ $ticket->id }}</li>
+                            </ol>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Main content -->
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="p-6 text-gray-900 dark:text-gray-100">
+                                        <div class="overflow-x-auto">
+                                            <!-- Ticket Details -->
+                                            <table class="table table-striped">
+                                                <tbody>
+                                                    <tr>
+                                                        <td><strong>Ticket ID:</strong></td>
+                                                        <td>#{{ $ticket->id }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>Type:</strong></td>
+                                                        <td>{{ $ticket->type }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>Severity:</strong></td>
+                                                        <td>{{ $ticket->severity }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>Title:</strong></td>
+                                                        <td>{{ $ticket->subject }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>Status:</strong></td>
+                                                        <td>
+                                                            @if ($ticket->status === 'submitted')
+                                                                <span class="status-box status-submitted">Submitted</span>
+                                                            @elseif ($ticket->status === 'verified')
+                                                                <span class="status-box status-verified">Verified</span>
+                                                            @elseif ($ticket->status === 'resolved')
+                                                                <span class="status-box status-resolved">Resolved</span>
+                                                            @elseif ($ticket->status === 'closed')
+                                                                <span class="status-box status-closed">Closed</span>
+                                                            @endif
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>Date:</strong></td>
+                                                        <td>{{ $ticket->created_at->setTimezone('Asia/Kuala_Lumpur')->format('d/m/y H:i') }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>Description:</strong></td>
+                                                        <td>{{ $ticket->description }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>Remarks:</strong></td>
+                                                        <td>{{ $ticket->remarks }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>Attachments:</strong></td>
+                                                        <td>
+                                                            @if ($ticket->attachments)
+                                                                @foreach (json_decode($ticket->attachments) as $attachment)
+                                                                    <a href="{{ asset('storage/' . $attachment) }}">{{ $attachment }}</a><br>
+                                                                @endforeach
+                                                            @else
+                                                                No attachments
+                                                            @endif
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                             <!-- Back Button -->
+                                             <div class="text-center mt-4">
+                                                <a href="{{ route('tickets.index') }}" class="btn btn-secondary">Back</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.content -->
+
         </div>
     </div>
-
-    <style>
-/* Table part */
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        border-width: 4px; /* Adjust the thickness of the border */
-    }
-
-    td, th {
-        border: 2px solid #ccc; /* Border for each cell */
-        padding: 8px;
-        text-align: left;
-    }
-
-    tr:nth-child(even) {
-        background-color: #f9f9f9;
-    }
-
-    .dark td, .dark th {
-        border-color: rgba(255, 255, 255, 0.1);
-    }
-
-    .dark tr:nth-child(even) {
-        background-color: rgba(255, 255, 255, 0.1);
-    }
-
-/* Status Part */
-        .status-box {
-            display: inline-block;
-            padding: 0.25em 0.5em;
-            border-radius: 4px;
-            color: white;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-        .status-submitted {
-            background-color: green;
-        }
-        .status-verified {
-            background-color: yellow;
-            color: black;
-        }
-        .status-resolved {
-            background-color: red;
-        }
-        .status-closed {
-            background-color: grey;
-        }
-
-/* Back button */
-/* Submit Ticket Button */
-    .back-button {
-        display: inline-block;
-        padding: 0.5rem 1rem;
-        border: none;
-        border-radius: 0.25rem;
-        font-weight: 600;
-        color: #fff;
-        background-color: #6366F1; /* Indigo color */
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-        text-decoration: none; /* Remove underline for anchor elements */
-    }
-
-    .back-button:hover {
-        background-color: #4F46E5; /* Darker shade of indigo on hover */
-    }
-    </style>
-
-</x-app-layout>
-
-
+</x-user-layout>

@@ -24,11 +24,19 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
+        // Authenticate the user
         $request->authenticate();
 
+        // Regenerate the session to prevent fixation attacks
         $request->session()->regenerate();
 
-        if($request->user()->usertype === 'admin'){
+        // Update the last_login_at field
+        $user = $request->user();
+        $user->last_login_at = now();
+        $user->save();
+
+        // Redirect based on user type
+        if ($user->usertype === 'admin') {
             return redirect('admin/dashboard');
         }
 
