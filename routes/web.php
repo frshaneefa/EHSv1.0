@@ -36,11 +36,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/ticket/{id}', [TicketController::class, 'show'])->name('tickets.show');
     Route::get('/tickets/print', [TicketController::class, 'print'])->name('tickets.print');
 
-    // Leave request routes for staff
-    Route::get('/leave-requests', [LeaveRequestController::class, 'index'])->name('leave-requests.index');
-    Route::get('/leave-requests/create', [LeaveRequestController::class, 'create'])->name('leave-requests.create');
-    Route::post('/leave-requests', [LeaveRequestController::class, 'store'])->name('leave-requests.store');
-    Route::get('/leave-requests/{id}', [LeaveRequestController::class, 'show'])->name('leave-requests.show');
 });
 
 // Routes for authenticated admins
@@ -55,6 +50,8 @@ Route::middleware('auth', 'admin')->group(function () {
     Route::get('admin/management/users/{id}/edit', [HomeController::class, 'editUser'])->name('admin.users.edit');
     Route::put('admin/management/users/{id}', [HomeController::class, 'updateUser'])->name('admin.users.update');
     Route::delete('admin/management/users/{id}', [HomeController::class, 'destroyUser'])->name('admin.users.destroy');
+    Route::patch('/admin/management/{user}/update-user-type', [HomeController::class, 'updateUserType'])->name('admin.users.updateUserType');
+
 
     // Ticket management routes for admin
     Route::get('admin/tickets', [AdminTicketController::class, 'index'])->name('admin.tickets.index');
@@ -67,18 +64,5 @@ Route::middleware('auth', 'admin')->group(function () {
     Route::put('admin/ticket/{id}', [AdminTicketController::class, 'update'])->name('admin.tickets.update');
     Route::delete('admin/ticket/{id}', [AdminTicketController::class, 'destroy'])->name('admin.tickets.destroy');
     
-    // Leave request management routes for admin
-    Route::get('admin/leave-requests', [AdminLeaveRequestController::class, 'index'])->name('admin.leave-requests.index');
-    Route::get('admin/leave-requests/{id}', [AdminLeaveRequestController::class, 'show'])->name('admin.leave-requests.show');
-    Route::get('admin/leave-requests/create', [AdminLeaveRequestController::class, 'create'])->name('admin.leave-requests.create');
-    Route::post('admin/leave-requests/store', [AdminLeaveRequestController::class, 'store'])->name('admin.leave-requests.store');
-
-    // Update the status with a PATCH request
-    Route::patch('admin/leave-requests/{id}/status', [AdminLeaveRequestController::class, 'updateStatus'])->name('admin.leave-requests.update-status');
-    Route::delete('admin/leave-requests/{id}', [AdminLeaveRequestController::class, 'destroy'])->name('admin.leave-requests.destroy');
-    Route::patch('admin/leave-requests/{id}', [AdminLeaveRequestController::class, 'update'])->name('admin.leave-requests.update');
-    // Route for admin to download the attachment
-    Route::get('/admin/leave-requests/{id}/download', [AdminLeaveRequestController::class, 'adminDownloadAttachment'])->name('admin.leave-requests.download');
-
 });
 

@@ -65,32 +65,6 @@
             </ul>
           </li>
 
-          <!-- HRMS (Visible to 'staff' role only) -->
-          @if(Auth::user()->usertype == 'staff')
-          <li class="nav-item">
-            <a href="#" class="nav-link {{ request()->routeIs('leave-requests.create') ? 'active' : '' }} {{ request()->routeIs('leave-requests.index') ? 'active' : '' }}" data-toggle="collapse" data-target="#hrms-menu">
-              <i class="nav-icon fas fa-calendar-alt"></i>
-              <p>
-                HRMS
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview collapse" id="hrms-menu">
-            <li class="nav-item">
-                <a href="{{ route('leave-requests.index') }}" class="nav-link {{ request()->routeIs('leave-requests.index') ? 'active' : '' }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>All Request</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ route('leave-requests.create') }}" class="nav-link {{ request()->routeIs('leave-requests.create') ? 'active' : '' }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Submit</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          @endif
           <!-- /.sidebar-menu -->
         </ul>
       </nav>

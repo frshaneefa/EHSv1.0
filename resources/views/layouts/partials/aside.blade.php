@@ -90,28 +90,6 @@
             </ul>
           </li>
 
-          <!-- HRMS -->
-          <li class="nav-item">
-            <a href="#" class="nav-link {{ request()->routeIs('admin.leave-requests.index') ? 'active' : '' }} {{ request()->routeIs('admin.leave-requests.create') ? 'active' : '' }}" data-toggle="collapse" data-target="#hrms-menu">
-              <i class="nav-icon fas fa-calendar-alt"></i>
-              <p>
-                HRMS
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview collapse" id="hrms-menu">
-              <li class="nav-item">
-                <a href="{{ route('admin.leave-requests.index') }}" class="nav-link {{ request()->routeIs('admin.leave-requests.index') ? 'active' : '' }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>All Request</p>
-                </a>
-              </li>
-              <!-- <li class="nav-item">
-                <a href="{{ route('admin.leave-requests.create') }}" class="nav-link {{ request()->routeIs('admin.leave-requests.create') ? 'active' : '' }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Submit</p>
-                </a>
-              </li> -->
             </ul>
           </li>
         </ul>

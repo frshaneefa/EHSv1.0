@@ -6,15 +6,17 @@
     <title>EHSv1</title>
     <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css"></link>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
+    <link rel="icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
 </head>
-<body>
+<body style="background-image: url('{{ asset('images/BG_1 (1).jpg') }}'); background-size: cover; background-position: center; background-repeat: no-repeat;">
     <div class="container" id="container">
 
         <div class="form-container register-container">
             <form action="#">
+                <img src="{{ asset('images/logoene.jpg') }}" alt="Enetech Logo Image" style="width: 100px; height: auto;">
                 <h3>Register Are Closed For Now.</h3>
-                    <p>Please provide the details for the registraion: </p>
-                    <p> Name<br>Email<br>Contact Number<br>Agensi<br>Address</p>
+                    <p>Please provide the details for the registraion:<br>Name<br>Email<br>Contact Number<br>Agensi<br>Address</p>
                     <p>Our support team will create an account for you.</p>
                     <!-- <input type="text" placeholder="Name"></input>
                     <input type="email" placeholder="Email"></input>
@@ -25,6 +27,8 @@
         
         <div class="form-container login-container">
             <form method="POST" action="{{ route('login') }}">
+                <img src="{{ asset('images/logoene.jpg') }}" alt="Enetech Logo Image" style="width: 100px; height: auto;">
+                    <br>
                 <h1>Login here.</h1>
                 @csrf
 
@@ -72,7 +76,7 @@
                     </button>
                 </div>
                 <div class="overlay-panel overlay-right">
-                    <h1 class="title">Create your <br> ticket now</h1>
+                    <h1 class="title">Welcome to <br> Enetech Helpdesk & Support </h1>
                     <p>if you dont have an account yet, join us and start your journey.</p>
                     <button class="ghost" id="register">Register
                         <i class="lni lni-arrow-right register"></i>

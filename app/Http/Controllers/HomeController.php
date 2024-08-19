@@ -102,8 +102,8 @@ class HomeController extends Controller
     public function editUser($id)
     {
         $user = User::findOrFail($id);
-
-        return view('admin.users.edit', compact('user'));
+        $agensis = Agensi::all(); // Fetch all Agensi records
+        return view('admin.users.edit', compact('user', 'agensis'));
     }
 
     public function storeUser(Request $request)
@@ -141,24 +141,29 @@ class HomeController extends Controller
      */
     public function updateUser(Request $request, $id)
     {
-        // Validate the incoming request data
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email,'.$id,
-            'agensi' => 'required|exists:agensis,id',
-            'password' => 'nullable|string|min:8|confirmed',
-        ]);
-
         // Retrieve the user record from the database
         $user = User::findOrFail($id);
 
+        // Validate the request data
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . $user->id,
+            'phone' => 'nullable|string|max:15',
+            'address' => 'nullable|string|max:255',
+            'agensi_id' => 'required|exists:agensis,id',
+            'usertype' => 'required|string|in:admin,staff,user',
+        ]);
+
         // Update the user record with the validated data
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->agensi_id = $request->agensi;
+        $user->name = $validatedData['name'];
+        $user->email = $validatedData['email'];
+        $user->phone = $validatedData['phone'];
+        $user->address = $validatedData['address'];
+        $user->agensi_id = $validatedData['agensi_id'];
+        $user->usertype = $validatedData['usertype'];
 
         // Update the password only if it's provided
-        if ($request->password) {
+        if ($request->filled('password')) {
             $user->password = Hash::make($request->password);
         }
 
@@ -184,5 +189,18 @@ class HomeController extends Controller
         // Redirect the user to a specific page with a success message
         return redirect()->route('admin.users.index')->with('success', 'User deleted successfully.');
     }
+
+    public function updateUserType(Request $request, User $user)
+    {
+        $request->validate([
+            'usertype' => 'required|in:admin,staff,user',
+        ]);
+
+        $user->usertype = $request->input('usertype');
+        $user->save();
+
+        return redirect()->route('admin.users.index')->with('success', 'User type updated successfully.');
+    }
+
 }
 

@@ -14,7 +14,8 @@
     <link rel="stylesheet" href="{{ asset('backend/plugins/fontawesome-free/css/all.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('backend/dist/css/adminlte.min.css') }}">
-    
+    <link rel="icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
+
     <style>
         /* Notification Container */
             #notifications {
