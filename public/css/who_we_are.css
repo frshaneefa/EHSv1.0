@@ -1,0 +1,112 @@
+/* public/css/who_we_are.css */
+
+/* Header Section */
+.header-section {
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    padding: 10rem 0;
+}
+
+.header-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: white;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+    font-size: 1.125rem;
+    color: white;
+    margin-top: 1rem;
+}
+
+.breadcrumb a {
+    text-decoration: underline;
+    color: white;
+}
+
+.breadcrumb .separator {
+    color: red; /* Set the color of '>' to red */
+    font-size: 1.7rem;
+}
+
+/* Section One: Company Introduction */
+.section-one {
+    background-color: white;
+    padding: 2rem 1rem;
+}
+
+.section-one-content {
+    max-width: 60rem;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.section-one-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+}
+
+.section-one p {
+    font-size: 1.125rem;
+    margin-bottom: 1rem;
+    color: grey;
+}
+
+/* Card Container */
+.card-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-top: 2rem;
+    max-width: 60rem;
+    margin-left: auto;
+    margin-right: auto;
+    flex-wrap: wrap; /* Allow cards to wrap on smaller screens */
+}
+
+/* Card */
+.card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    width: 100%;
+    max-width: calc(50% - 1rem); /* Two cards side by side */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Card Image */
+.card-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Card Title */
+.card-title {
+    background-color: red;
+    color: white;
+    font-size: 1.25rem;
+    font-weight: bold;
+    padding: 1rem;
+    margin: 0;
+}
+
+/* Card Text */
+.card-text {
+    color: grey;
+    font-size: 1rem;
+    padding: 1rem;
+}
+
+/* Responsive Design: Stack cards on smaller screens */
+@media (max-width: 768px) {
+    .card {
+        max-width: 100%; /* Make each card take full width */
+    }
+}
+
+

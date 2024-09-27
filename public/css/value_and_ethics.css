@@ -1,0 +1,170 @@
+/* public/css/value_and_ethics.css */
+
+/* Header Section */
+.header-section {
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    padding: 10rem 0;
+}
+
+.header-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: white;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+    font-size: 1.125rem;
+    color: white;
+    margin-top: 1rem;
+}
+
+.breadcrumb a {
+    text-decoration: underline;
+    color: white;
+}
+
+.breadcrumb .separator {
+    color: red; /* Set the color of '>' to red */
+    font-size: 1.7rem;
+}
+
+/* Introduction Section */
+.section-introduction {
+    background-color: white;
+    padding: 2rem 10rem; /* Adjust padding as needed */
+    display: flex; /* Use Flexbox */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+    justify-content: center; /* Center items vertically */
+    text-align: left; /* Center text inside the section */
+}
+
+
+.section-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+/* Additional Styling (if needed) */
+.section-introduction p {
+    max-width: 1200px; /* Limit the width of the text for readability */
+}
+
+/* Cards Section */
+.section-cards {
+    padding: 2rem 1rem;
+    background-color: white;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Three columns */
+    gap: 2rem; /* Space between cards */
+    max-width: 80rem; /* Adjust based on your layout */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Card */
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content horizontally */
+    justify-content: center; /* Center content vertically */
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 3rem;
+    box-sizing: border-box; /* Ensure padding and border are included in width */
+    text-align: center; /* Center text inside card */
+    position: relative; /* Required for animation */
+    transition: color 0.5s ease, background-color 0.5s ease; /* Smooth transition for color changes */
+}
+
+/* Pseudo-element for background color animation */
+.card::before {
+    content: '';
+    position: absolute;
+    top: 100%; /* Start below the card */
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: red; /* Red background color */
+    transition: top 0.5s ease-in-out; /* Animate the top property */
+    z-index: -1; /* Place it behind the card content */
+}
+
+/* Hover effect */
+.card:hover::before {
+    top: 0; /* Move the background up to cover the card */
+}
+
+.card:hover {
+    background-color: red;
+    color: white; /* Change text color on hover */
+}
+
+
+/* Keyframes for animation */
+@keyframes colorChange {
+    0% {
+        background-color: white;
+        color: black;
+    }
+    100% {
+        background-color: red;
+        color: white;
+    }
+}
+
+/* Card Icon */
+.card-icon {
+    font-size: 2rem; /* Adjust size as needed */
+    color: red; /* Red color for the icon */
+    margin-bottom: 1rem;
+    transition: color 0.5s ease; /* Smooth transition for icon color */
+}
+
+/* Card Title */
+.card-title {
+    color: black;
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin: 0;
+    transition: color 0.5s ease; /* Smooth transition for text color */
+}
+
+/* Card Text */
+.card-text {
+    color: grey;
+    font-size: 1rem;
+    padding: 0 1rem;
+    transition: color 0.5s ease; /* Smooth transition for text color */
+}
+
+/* On hover, ensure text and icon colors also change to white */
+.card:hover .card-icon,
+.card:hover .card-title,
+.card:hover .card-text {
+    color: white; /* White color on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .card-grid {
+        grid-template-columns: repeat(2, 1fr); /* Two columns on medium screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .card-grid {
+        grid-template-columns: 1fr; /* One column on small screens */
+    }
+}
+

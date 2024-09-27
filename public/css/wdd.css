@@ -1,0 +1,272 @@
+/* Header Section */
+.header-section {
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    padding: 10rem 0;
+}
+
+.header-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: white;
+}
+
+/* Breadcrumb Styling */
+.breadcrumb {
+    font-size: 1.125rem;
+    color: white;
+    margin-top: 1rem;
+}
+
+.breadcrumb a {
+    text-decoration: underline;
+    color: white;
+}
+
+.breadcrumb .separator {
+    color: red;
+    font-size: 1.7rem;
+}
+
+/* Cloud Solutions Section */
+.cloud-solutions-section {
+    padding: 3rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: white; /* Light background color for contrast */
+}
+
+.cloud-solutions-container {
+    max-width: 1200px;
+    padding: 0 2rem;
+}
+
+.cloud-solutions-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.cloud-solutions-description {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    color: gray;
+}
+
+/* Web Development Phases Section */
+.development-phases-section {
+    padding: 3rem 0;
+    background-color: white;
+    text-align: center;
+}
+
+.phases-title {
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    color: #333;
+}
+
+.planning-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Our Offerings Section */
+.our-offerings-section {
+    padding: 2rem 1rem;
+    background-color: #f4f4f4;
+    text-align: center;
+}
+
+
+/* Cards Section */
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.card {
+    background-color: #f4f4f4;
+    flex: 1 1 calc(33.333% - 1rem); /* 3 cards per row */
+    max-width: calc(33.333% - 1rem);
+    text-align: center;
+    padding: 1.5rem;
+    border-radius: 8px; /* Adds a subtle border-radius for smoother look */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for card depth */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Slightly more shadow on hover */
+}
+
+.card-content {
+    text-align: center;
+}
+
+.card h3 {
+    margin-top: 10px;
+    font-size: 1.2rem;
+}
+
+.card p {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* Icon Circle */
+.icon-circle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;           /* Circle size */
+    height: 60px;          /* Circle size */
+    border: 3px solid #e74c3c; /* Customize the border color */
+    border-radius: 50%;    /* Makes it a circle */
+    margin-bottom: 10px;   /* Space below the icon */
+    transition: background-color 0.3s ease, border-color 0.3s ease; /* Smooth transition */
+}
+
+.icon-circle i {
+    font-size: 24px;       /* Adjust the size of the icon */
+    color: #e74c3c;        /* Icon color */
+}
+
+/* Icon Circle Hover */
+.card:hover .icon-circle {
+    background-color: #e74c3c; /* Change background color on hover */
+    border-color: #f4f4f4;     /* Change border color on hover */
+}
+
+.card:hover .icon-circle i {
+    color: #f4f4f4;        /* Change icon color on hover */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .card {
+        flex: 1 1 calc(50% - 1rem); /* 2 cards per row on tablet */
+        max-width: calc(50% - 1rem);
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        flex: 1 1 100%; /* 1 card per row on mobile */
+        max-width: 100%;
+    }
+}
+
+/* Providing Best Technology Section */
+.provide-phases-section {
+    padding: 3rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: white; /* Light background color for contrast */
+}
+
+.provide-description {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    color: gray;
+}
+
+/* Server Side Section */
+.server-side-section {
+    padding: 3rem 0;
+    background-color: #4a6eb1;
+    text-align: center;
+}
+
+.server-phases-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    color: white;
+}
+
+/* Flexbox for Logos */
+.server-side-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.logo-item {
+    display: flex;
+    flex-direction: column; /* Align logo and text vertically */
+    align-items: center; /* Center items horizontally */
+    text-align: center;
+    padding: 1rem; /* Add padding around each item */
+}
+
+.logo-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px; /* Set a consistent width for the image container */
+    height: 150px; /* Set a consistent height for the image container */
+    overflow: hidden;
+}
+
+.logo-image-container img {
+    width: 100%; /* Make the image fit the container */
+    height: auto;
+    object-fit: contain;
+    filter: brightness(0) invert(1); /* Makes the logo white */
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+.logo-text-container {
+    margin-top: 0.5rem;
+}
+
+.logo-text {
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .server-side-logos {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .logo-item {
+        padding: 0.5rem; /* Adjust padding for smaller screens */
+    }
+
+    .logo-image-container img {
+        max-width: 80px;
+    }
+
+    .logo-text {
+        font-size: 0.9rem; /* Adjust text size for smaller screens */
+    }
+}
+
+/* Server Side Black Section */
+.server-side-black-section {
+    padding: 3rem 0;
+    background-color: #000000;
+    text-align: center;
+}

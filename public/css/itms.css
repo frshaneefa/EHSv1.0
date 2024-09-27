@@ -1,0 +1,170 @@
+/* Header Section */
+.header-section {
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    padding: 10rem 0;
+}
+
+.header-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: white;
+}
+
+/* Breadcrumb Styling */
+.breadcrumb {
+    font-size: 1.125rem;
+    color: white;
+    margin-top: 1rem;
+}
+
+.breadcrumb a {
+    text-decoration: underline;
+    color: white;
+}
+
+.breadcrumb .separator {
+    color: red;
+    font-size: 1.7rem;
+}
+
+/* Cloud Solutions Section */
+.cloud-solutions-section {
+    padding: 3rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #f4f4f4; /* Light background color for contrast */
+}
+
+.cloud-solutions-container {
+    max-width: 1200px;
+    padding: 0 2rem;
+}
+
+.cloud-solutions-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.cloud-solutions-description {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    color: gray;
+}
+
+/* Cards Section */
+.section-cards {
+    padding: 2rem 1rem;
+    background-color: #f4f4f4;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    flex: 1 1 calc(33.333% - 1rem); /* 3 cards per row */
+    max-width: calc(33.333% - 1rem);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 0.75rem;
+    object-fit: cover; /* Ensure the image covers the space without distortion */
+    max-height: 150px; /* Set a max height for images to keep cards uniform */
+}
+
+.card-content h3 {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 0.75rem;
+    color: #333;
+}
+
+.card-content p {
+    font-size: 1rem;
+    color: #666;
+}
+
+.red-tick {
+    color: red;
+    margin-right: 10px;
+}
+
+.service-list {
+    list-style: none;
+    padding-left: 0;
+    text-align: left; /* Ensure text is aligned to the left */
+}
+
+.service-list li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    text-align: left; /* Ensure list items are aligned left */
+}
+
+.red-tick {
+    color: red;
+    margin-right: 10px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .card {
+        flex: 1 1 calc(50% - 1rem); /* 2 cards per row on tablet */
+        max-width: calc(50% - 1rem);
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        flex: 1 1 100%; /* 1 card per row on mobile */
+        max-width: 100%;
+    }
+}
+
+.logo-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.logo-grid img {
+    width: 100px; /* Adjust the size of the logos */
+    height: auto;
+    object-fit: contain;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+    .logo-grid img {
+        width: 80px; /* Resize for smaller screens */
+    }
+}
+

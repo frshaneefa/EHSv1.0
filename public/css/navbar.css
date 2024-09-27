@@ -1,0 +1,187 @@
+/* Navbar base styles */
+.navbar {
+    background-color: rgba(255, 255, 255, 0.8); /* White with 80% opacity */
+    backdrop-filter: blur(10px); /* Optional: Add blur effect */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Shadow for better contrast */
+    position: relative;
+}
+
+/* Navbar container layout */
+.navbar-container {
+    display: flex;
+    justify-content: space-between; /* Space out logo, menu, and login button */
+    align-items: center;
+    height: 4rem;
+    margin: 0 auto;
+    max-width: 1200px; /* Set a maximum width */
+    padding: 0 1rem; /* Add some padding for smaller screens */
+}
+
+/* Logo styles */
+.navbar-logo {
+    padding-right: 2rem; /* Adjust as needed */
+}
+
+.navbar-logo .logo {
+    height: 2rem;
+    width: auto;
+}
+
+/* Navbar links (centered) */
+.navbar-links {
+    display: flex;
+    flex: 1; /* Let navbar links grow to fill space */
+    justify-content: center; /* Center the links */
+    gap: 2rem; /* Space between links */
+}
+
+/* Link styles */
+.nav-link {
+    color: #1a202c; /* Default text color */
+    text-decoration: none;
+    transition: color 0.3s; /* Smooth transition */
+}
+
+.nav-link:hover {
+    color: red; /* Change text color to red on hover */
+}
+
+.nav-link.active {
+    color: red; /* Change the text color for active links */
+    font-weight: bold; /* Optional: Make the active link bold */
+}
+
+/* Dropdown menu styles */
+.nav-item {
+    position: relative;
+}
+
+.dropdown-menu {
+    display: none; /* Hide the dropdown by default */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.8); /* Same as navbar background */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Shadow for better contrast */
+    z-index: 1000;
+    width: 200px;
+    padding: 0.5rem;
+}
+
+/* Show the dropdown on hover */
+.nav-item:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-link {
+    display: block;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    color: #1a202c; /* Default text color */
+    transition: color 0.3s;
+}
+
+.dropdown-link:hover {
+    color: red; /* Change text color on hover */
+}
+
+.dropdown-link.active {
+    color: red; /* Change text color for active links */
+    font-weight: bold;
+}
+
+/* Chevron icon for dropdown */
+.arrow-icon {
+    font-size: 0.75rem;
+    margin-left: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.nav-item:hover .arrow-icon {
+    transform: rotate(90deg);
+}
+
+/* Hamburger menu (hidden by default, shown on mobile) */
+.hamburger {
+    display: none;
+    cursor: pointer;
+}
+
+.hamburger div {
+    width: 1.5rem;
+    height: 0.2rem;
+    background-color: #1a202c;
+    margin: 0.3rem 0;
+    transition: 0.3s;
+}
+
+/* Login button styles */
+.navbar-login {
+    margin-left: auto;
+}
+
+.login-btn {
+    background-color: red;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.login-btn:hover {
+    background-color: darkred;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .navbar {
+        position: relative; /* Ensure the navbar can contain absolute positioned children */
+    }
+
+    .navbar-links {
+        display: none; /* Hide links by default */
+        flex-direction: column; /* Stack links vertically */
+        position: absolute;
+        top: 4rem; /* Adjust based on navbar height */
+        right: 0;
+        background-color: rgba(255, 255, 255, 0.95); /* Slightly more opaque for better visibility */
+        width: 100%; /* Full width */
+        padding: 1rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow for dropdown */
+        z-index: 1000; /* Ensure it appears above other content */
+    }
+
+    .navbar-links.active {
+        display: flex; /* Show links when active */
+    }
+
+    .hamburger {
+        display: block; /* Show hamburger icon on small screens */
+        cursor: pointer;
+    }
+
+    .hamburger div {
+        width: 25px; /* Set width for hamburger bars */
+        height: 3px; /* Set height for hamburger bars */
+        background-color: black; /* Set color for hamburger bars */
+        margin: 4px 0; /* Space between bars */
+        transition: all 0.3s ease;
+    }
+
+    .hamburger.active div:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px); /* Adjust translation for better visual */
+    }
+
+    .hamburger.active div:nth-child(2) {
+        opacity: 0; /* Hide the middle bar */
+    }
+
+    .hamburger.active div:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px); /* Adjust translation for better visual */
+    }
+
+    .navbar-login {
+        display: none; /* Hide login button on mobile */
+    }
+}

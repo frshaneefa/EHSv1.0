@@ -1,0 +1,215 @@
+/* Header Section */
+.header-section {
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    padding: 10rem 0;
+}
+
+.header-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: white;
+}
+
+/* Breadcrumb Styling */
+.breadcrumb {
+    font-size: 1.125rem;
+    color: white;
+    margin-top: 1rem;
+}
+
+.breadcrumb a {
+    text-decoration: underline;
+    color: white;
+}
+
+.breadcrumb .separator {
+    color: red; /* Set the color of '>' to red */
+    font-size: 1.7rem;
+
+}
+
+/* Introduction Section */
+.section-introduction {
+    padding: 2rem 1rem;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+}
+
+.intro-container {
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.intro-text {
+    font-size: 1.125rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+    max-width: 100%;
+}
+
+.intro-title {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #333;
+    max-width: 100%;
+}
+
+/* Cards Section */
+.section-cards {
+    padding: 2rem 1rem;
+    background-color: white;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    flex: 1 1 calc(33.333% - 1rem); /* 3 cards per row */
+    max-width: calc(33.333% - 1rem);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 0.75rem;
+    object-fit: cover; /* Ensure the image covers the space without distortion */
+    max-height: 150px; /* Set a max height for images to keep cards uniform */
+}
+
+.card-content h3 {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 0.75rem;
+    color: #333;
+}
+
+.card-content p {
+    font-size: 1rem;
+    color: #666;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .card {
+        flex: 1 1 calc(50% - 1rem); /* 2 cards per row on tablet */
+        max-width: calc(50% - 1rem);
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        flex: 1 1 100%; /* 1 card per row on mobile */
+        max-width: 100%;
+    }
+}
+
+/* ///////////////////////////////////////////////////////////////////////////////////// */
+
+
+/* Bosses Section */
+.section-bosses {
+    background-color: white;
+    padding: 40px 0;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.boss-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.team-member {
+    flex: 1 1 calc(20% - 20px); /* Set width for 5 columns, allowing for gaps */
+    max-width: calc(20% - 20px); /* Ensure maximum width for each item */
+    border-radius: 8px; /* Optional: rounded corners */
+    overflow: hidden; /* Prevent overflow */
+    transition: transform 0.3s; /* Optional: animation for hover effect */
+}
+
+.team-member:hover {
+    transform: translateY(-5px);
+}
+
+.member-image {
+    width: 100%;
+    height: auto;
+}
+
+.member-info {
+    padding: 5px; /* Padding for text content */
+    text-align: center; /* Center text */
+}
+
+.member-name {
+    font-size: 1.2em; /* Adjust as necessary */
+    font-weight: bold; /* Bold title */
+}
+
+.member-designation {
+    font-size: 1em; /* Adjust as necessary */
+    color: #666; /* Grey color for designation */
+}
+
+.member-contact a {
+    color: red; /* Change link color as desired */
+    text-decoration: none; /* Remove underline */
+}
+
+.member-contact a:hover {
+    text-decoration: underline;
+}
+
+/* Other Members Section */
+.section-other-members {
+    padding: 20px 0; /* Adjust as necessary for spacing */
+    background-color: white;
+}
+
+.other-members-container {
+    display: flex; /* Use Flexbox */
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+    justify-content: center; /* Center the items horizontally */
+    align-items: center; /* Center items vertically */
+    gap: 20px; /* Space between items */
+}
+
+/* Media Query for Smaller Screens */
+@media (max-width: 768px) {
+    .team-member {
+        flex: 1 1 calc(100% - 20px); /* Stack into a single column */
+        max-width: calc(100% - 20px); /* Ensure max width is 100% */
+    }
+}

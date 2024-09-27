@@ -9,14 +9,35 @@ use App\Http\Controllers\AdminTicketController;
 use App\Http\Controllers\AdminLeaveRequestController;
 use App\Http\Controllers\LeaveRequestController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CompanyProfileController;
 
 use Illuminate\Support\Facades\Mail;
 use App\Mail\TicketSubmitted;
 use App\Models\Ticket;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Root URL for the company profile's home page
+Route::get('/', [CompanyProfileController::class, 'welcome'])->name('company.welcome');
+
+// Company profile routes
+Route::get('/home', [CompanyProfileController::class, 'home'])->name('company.home');
+Route::get('/about-us', [CompanyProfileController::class, 'aboutUs'])->name('company.about');
+Route::get('/about-us/who-we-are', [CompanyProfileController::class, 'whoWeAre'])->name('company.who_we_are');
+Route::get('/about-us/values-ethics', [CompanyProfileController::class, 'valuesEthics'])->name('company.values_ethics');
+Route::get('/about-us/our-team', [CompanyProfileController::class, 'ourTeam'])->name('company.our_team');
+
+Route::get('/product-services', [CompanyProfileController::class, 'productServices'])->name('company.product_services');
+Route::get('/product-services/anything-as-services', [CompanyProfileController::class, 'anythingAsServices'])->name('company.anything_as_services');
+Route::get('/product-services/web-design-development', [CompanyProfileController::class, 'webDesignDevelopment'])->name('company.web_design_development');
+Route::get('/product-services/application-development', [CompanyProfileController::class, 'applicationDevelopment'])->name('company.application_development');
+Route::get('/product-services/it-maintenance-support', [CompanyProfileController::class, 'itMaintenanceSupport'])->name('company.it_maintenance_support');
+
+Route::get('/events', [CompanyProfileController::class, 'events'])->name('company.events');
+Route::get('/contact-us', [CompanyProfileController::class, 'contactUs'])->name('company.contact');
+
+Route::get('/education-services', [CompanyProfileController::class, 'education'])->name('company.edu');
+Route::get('/term-of-service', [CompanyProfileController::class, 'tos'])->name('company.tos');
+Route::get('/privacy-policy', [CompanyProfileController::class, 'privacyP'])->name('company.privacyP');
+Route::post('/contact/submit', [CompanyProfileController::class, 'submit'])->name('company.submit');
 
 Route::name('dashboard')->get('/dashboard', function () {
     return view('dashboard');
@@ -62,7 +83,5 @@ Route::middleware('auth', 'admin')->group(function () {
 
     Route::get('admin/ticket/{id}/edit', [AdminTicketController::class, 'edit'])->name('admin.tickets.edit');
     Route::put('admin/ticket/{id}', [AdminTicketController::class, 'update'])->name('admin.tickets.update');
-    Route::delete('admin/ticket/{id}', [AdminTicketController::class, 'destroy'])->name('admin.tickets.destroy');
-    
+    Route::delete('admin/ticket/{id}', [AdminTicketController::class, 'destroy'])->name('admin.tickets.destroy'); 
 });
-
