@@ -5,7 +5,7 @@
 
     <!-- Header Section -->
     <header class="header-section" style="background-image: url('{{ asset('images/header1.jpeg') }}');">
-        <div class="container">
+        <div class="container mx-auto">
             <h1 class="header-title">Contact Us</h1>
             <p class="breadcrumb">
                 <a href="{{ url('/') }}">Home</a> <span class="separator">&gt;</span> Contact
