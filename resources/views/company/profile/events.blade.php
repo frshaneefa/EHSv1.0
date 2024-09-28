@@ -3,7 +3,7 @@
     
     <!-- Header Section -->
     <header class="header-section" style="background-image: url('{{ asset('images/header1.jpeg') }}');">
-        <div class="container">
+        <div class="container mx-auto">
             <h1 class="header-title">Our Events</h1>
             <p class="breadcrumb">
                 <a href="{{ url('/') }}">Home</a> <span class="separator">&gt;</span> Events
@@ -13,7 +13,7 @@
     
     <!-- Events Section -->
     <section class="events-section">
-        <div class="container">
+        <div class="container mx-auto">
             <div class="events-flex">
                 @foreach (range(2024, 2023) as $year)
                 <div class="event-card" onclick="showYearContent('yearContent{{ $year }}')">

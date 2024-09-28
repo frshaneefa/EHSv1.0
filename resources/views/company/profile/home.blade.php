@@ -21,7 +21,7 @@
     </header>
 
     <section class="services">
-        <div class="container">
+        <div class="container mx-auto">
             <div class="card">
                 <i class="fas fa-cogs fa-3x"></i>
                 <h2><b>IT SERVICES</b></h2>
