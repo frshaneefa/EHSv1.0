@@ -12,7 +12,7 @@
     color: white;
 }
 
-/* Breadcrumb Styling */
+/* Breadcrumb */
 .breadcrumb {
     font-size: 1.125rem;
     color: white;
@@ -27,7 +27,6 @@
 .breadcrumb .separator {
     color: red; /* Set the color of '>' to red */
     font-size: 1.7rem;
-
 }
 
 /* Introduction Section */
