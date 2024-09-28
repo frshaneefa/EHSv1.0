@@ -44,7 +44,7 @@
             </div>
             <div class="card">
                 <div class="card-content">
-                    <h3>Why ENETECH Managed Services?</h3>
+                    <h3>Why ENETECH Managed Services?</h3><br>
                     <img src="{{ asset('images/who/2.jpeg') }}" alt="Card 1 Image" class="card-image">
                     <ul class="service-list">
                         <li><i class="fas fa-check-circle red-tick"></i> 24X7 Monitoring and Troubleshooting</li>

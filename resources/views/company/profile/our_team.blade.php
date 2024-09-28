@@ -73,7 +73,7 @@
     
     <!-- Bosses Section -->
     <section class="section-bosses">
-        <div class="container">
+        <div class="container mx-auto">
             <h2 class="section-title">Meet Our Professional  Teams</h2>
             <div class="boss-container">
                 <!-- Boss 1 -->

@@ -96,7 +96,7 @@
 
                 <!-- Login Button -->
                 <div class="navbar-login">
-                    <a href="{{ route('login') }}" class="login-btn">Login</a>
+                    <a href="{{ route('login') }}" class="login-btn">LOGIN</a>
                 </div>
             </div>
         </nav>
