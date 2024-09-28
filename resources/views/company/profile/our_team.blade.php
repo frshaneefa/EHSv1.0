@@ -169,7 +169,7 @@
 
     <!-- Other Team Members Section -->
     <section class="section-other-members">
-        <div class="container">
+        <div class="container mx-auto">
             <div class="other-members-container">
                 <!-- Other Member 2 -->
                 <div class="team-member">
