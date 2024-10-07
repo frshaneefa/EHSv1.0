@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ticket;
 use App\Models\Agensi;
+use App\Models\User;
 
 use App\Mail\TicketSubmitted;
 use Illuminate\Http\Request;
@@ -19,12 +20,29 @@ class AdminTicketController extends Controller
     public function index(Request $request)
     {
         // Initialize the query for fetching tickets
-        $tickets = Ticket::query();
+        $tickets = Ticket::with('user', 'agensi'); // Eager load related user and agensi
 
-        // Apply filters based on request parameters
+        // Apply filters if any
         if ($request->has('search') && $request->search) {
-            $tickets->where('id', $request->search)
-                    ->orWhere('subject', 'like', '%' . $request->search . '%');
+            $searchTerm = $request->search;
+
+            $tickets->where(function ($query) use ($searchTerm) {
+                // Search by ID, subject, sender name, type, severity, status, and agensi
+                $query->where('id', $searchTerm)
+                    ->orWhere('subject', 'like', '%' . $searchTerm . '%')
+                    ->orWhereHas('user', function($q) use ($searchTerm) {
+                        $q->where('name', 'like', '%' . $searchTerm . '%'); // Assuming 'name' is the sender name
+                    })
+                    ->orWhere('type', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('severity', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('status', 'like', '%' . $searchTerm . '%')
+                    ->orWhereHas('agensi', function($q) use ($searchTerm) {
+                        $q->where('name', 'like', '%' . $searchTerm . '%'); // Assuming 'name' is the agensi name
+                    })
+                    ->orWhereHas('assignedStaff', function($q) use ($searchTerm) {
+                        $q->where('name', 'like', '%' . $searchTerm . '%'); // Assuming 'name' is the assigned staff name
+                    });
+            });
         }
 
         // Filter by Type
@@ -52,16 +70,37 @@ class AdminTicketController extends Controller
             $tickets->whereDate('created_at', $request->search_date);
         }
 
+        if ($request->has('type')) {
+            $tickets->where('type', $request->input('type'));
+        }
+        
+        if ($request->has('severity')) {
+            $tickets->where('severity', $request->input('severity'));
+        }
+        
+        if ($request->has('status')) {
+            $tickets->where('status', $request->input('status'));
+        }
+
         // Fetch distinct filter options
         $types = Ticket::select('type')->distinct()->get()->pluck('type');
         $severities = Ticket::select('severity')->distinct()->get()->pluck('severity');
         $statuses = Ticket::select('status')->distinct()->get()->pluck('status');
 
-        // Paginate the results
-        $tickets = $tickets->paginate($request->input('per_page', 10));
+        // Fetch total counts for each ticket status
+        $submittedCount = Ticket::where('status', 'submitted')->count();
+        $verifiedCount = Ticket::where('status', 'verified')->count();
+        $resolvedCount = Ticket::where('status', 'resolved')->count();
+        $closedCount = Ticket::where('status', 'closed')->count();
 
-        // Return the view with the filtered tickets and filter options
-        return view('admin.tickets.index', compact('tickets', 'types', 'severities', 'statuses'));
+        // Get the tickets for display with eager loading
+        $tickets = $tickets->with('user', 'agensi')->paginate($request->input('per_page', 10));
+
+        // Fetch staff members to assign
+        $staffMembers = User::where('usertype', 'staff')->get(); // Adjust the query as needed
+
+        // Return the view with the counts and tickets
+    return view('admin.tickets.index', compact('tickets', 'submittedCount', 'verifiedCount', 'resolvedCount', 'closedCount', 'types', 'severities', 'statuses', 'staffMembers'));
     }
 
     public function create()
@@ -90,20 +129,27 @@ class AdminTicketController extends Controller
             'attachments.*' => 'nullable|file|mimes:doc,docx,xls,xlsx,ppt,pptx,pdf,jpg,jpeg,png',
         ]);
 
-        // Handle attachments
+        // Initialize an array to hold attachment paths
+        $attachmentPaths = [];
+
+        // Handle file uploads
         if ($request->hasFile('attachments')) {
-            $attachments = [];
             foreach ($request->file('attachments') as $file) {
-                $path = $file->store('attachments', 'public');
-                $attachments[] = $path;
+                $originalName = $file->getClientOriginalName(); // Get original file name
+                $path = $file->storeAs('attachments', $originalName, 'public'); // Save with original name
+                $attachmentPaths[] = $path; // Store path for later use
             }
-            $data['attachments'] = json_encode($attachments);
-        } else {
-            $data['attachments'] = null;
         }
 
         // Assign the authenticated user's ID to the 'user_id' field
         $data['user_id'] = auth()->user()->id;
+
+        // Convert attachment paths to JSON format if it's not empty
+        if (!empty($attachmentPaths)) {
+            $data['attachments'] = json_encode($attachmentPaths); // Store path in JSON format
+        } else {
+            $data['attachments'] = null; // Set to null if no attachments
+        }
 
         // Attempt to create the ticket and send the email
         try {
@@ -134,6 +180,8 @@ class AdminTicketController extends Controller
     public function show($id)
     {
         $ticket = Ticket::findOrFail($id);
+        $ticket->attachments = json_decode($ticket->attachments, true); // Decode attachments
+        
         return view('admin.tickets.show', compact('ticket'));
     }
 
@@ -145,6 +193,8 @@ class AdminTicketController extends Controller
 
     public function update(Request $request, $id)
     {
+        $ticket = Ticket::findOrFail($id);
+        
         $data = $request->validate([
             'subject' => 'required|string|max:255',
             'equipment' => 'required|string',
@@ -157,16 +207,35 @@ class AdminTicketController extends Controller
             'status' => 'required|string|in:submitted,verified,resolved,closed',
         ]);
 
+        // Initialize an array to hold attachment paths
+        $attachmentPaths = [];
+
+        // Handle file uploads
         if ($request->hasFile('attachments')) {
-            $attachments = [];
             foreach ($request->file('attachments') as $file) {
-                $path = $file->store('attachments', 'public');
-                $attachments[] = $path;
+                $originalName = $file->getClientOriginalName(); // Get original file name
+                $path = $file->storeAs('attachments', $originalName, 'public'); // Save with original name
+                $attachmentPaths[] = $path; // Store path for later use
             }
-            $data['attachments'] = json_encode($attachments);
+
+            // Convert attachment paths to JSON format
+            if (!empty($attachmentPaths)) {
+                $data['attachments'] = json_encode($attachmentPaths); // Store path in JSON format
+            }
+        }
+        
+        $ticket->status = $request->input('status');
+
+        // Update timestamps based on status
+        if ($ticket->status === 'verified') {
+            $ticket->verified_at = now();
+        } elseif ($ticket->status === 'resolved') {
+            $ticket->resolved_at = now();
+        } elseif ($ticket->status === 'closed') {
+            $ticket->closed_at = now();
         }
 
-        $ticket = Ticket::findOrFail($id);
+        $ticket->save();
         // Attempt to update the ticket
         try {
             $ticket->update($data);
@@ -183,6 +252,8 @@ class AdminTicketController extends Controller
             // Redirect back with error message
             return redirect()->back()->withInput()->withErrors(['error' => 'Failed to update ticket.']);
         }
+
+        return redirect()->route('admin.tickets.index')->with('success', 'Ticket updated successfully!');
     }
 
     public function destroy($id)
@@ -219,4 +290,17 @@ class AdminTicketController extends Controller
         // Render a view to display the tickets for printing
         return view('tickets.print', compact('tickets'));
     }
+
+    public function assignStaff(Request $request, Ticket $ticket)
+    {
+        $request->validate([
+            'assigned_staff_id' => 'nullable|exists:users,id',
+        ]);
+
+        $ticket->assigned_staff_id = $request->assigned_staff_id;
+        $ticket->save();
+
+        return redirect()->route('admin.tickets.index')->with('success', 'Staff assigned successfully.');
+    }
+
 }

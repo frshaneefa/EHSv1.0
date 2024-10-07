@@ -23,6 +23,15 @@ class Ticket extends Model
         'type',          // Add this line
         'severity',
         'agensi_tid',
+        'closed_at',
+    ];
+
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+        'verified_at' => 'datetime',
+        'resolved_at' => 'datetime',
+        'closed_at' => 'datetime',
     ];
 
     public function agensi()
@@ -33,5 +42,9 @@ class Ticket extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+    
+    public function assignedStaff() {
+        return $this->belongsTo(User::class, 'assigned_staff_id'); // Assuming the foreign key is assigned_staff_id
     }
 }

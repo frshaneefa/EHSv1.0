@@ -24,8 +24,45 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-lg-12">
+                                <!-- Info Cards Section -->
+                                <div class="row">
+                                    <!-- Admin Card -->
+                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                        <div class="info-box">
+                                            <span class="info-box-icon bg-info"><i class="fas fa-user-shield"></i></span>
+                                            <div class="info-box-content">
+                                                <span class="info-box-text">Admins</span>
+                                                <span class="info-box-number">{{ $userCounts['admin'] }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Staff Card -->
+                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                        <div class="info-box">
+                                            <span class="info-box-icon bg-warning"><i class="fas fa-users-cog"></i></span>
+                                            <div class="info-box-content">
+                                                <span class="info-box-text">Staff</span>
+                                                <span class="info-box-number">{{ $userCounts['staff'] }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- User Card -->
+                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                        <div class="info-box">
+                                            <span class="info-box-icon bg-success"><i class="fas fa-users"></i></span>
+                                            <div class="info-box-content">
+                                                <span class="info-box-text">Users</span>
+                                                <span class="info-box-number">{{ $userCounts['user'] }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
                                 <div class="card">
                                     <div class="card-body">
+                                        
                                         <div class="p-6 text-gray-900 dark:text-gray-100">
                                             <div class="overflow-x-auto">
                                                 <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
@@ -59,6 +96,7 @@
                                                             <th>Email</th>
                                                             <th>Address</th>
                                                             <th>Agensi</th>
+                                                            <th>Designation</th>
                                                             <th>Last Login</th>
                                                             <th>Permission</th>
                                                             <th>Actions</th>
@@ -73,8 +111,9 @@
                                                                 <td>{{ $user->email }}</td>
                                                                 <td>{{ $user->address }}</td>
                                                                 <td>{{ $user->agensi->name ?? 'N/A' }}</td>
-                                                                <td><b>Date: </b>{{ $user->last_login_at ? $user->last_login_at->format('Y-m-d') : 'Never' }}<br>
-                                                                <b>Time: </b>{{ $user->last_login_at ? $user->last_login_at->format('H:i:s') : 'Never' }}
+                                                                <td>{{ $user->designation ?? 'N/A' }}</td> <!-- Displaying Designation -->
+                                                                <td><b>Date: </b>{{ $user->last_login_at ? $user->last_login_at->format('d-m-Y') : 'Never' }}<br>
+                                                                <b>Time: </b>{{ $user->last_login_at ? $user->last_login_at->format('H:i') : 'Never' }}
                                                                 </td>
                                                                 <td>
                                                                     <form action="{{ route('admin.users.updateUserType', $user->id) }}" method="POST" id="usertype-form-{{ $user->id }}">
@@ -168,4 +207,36 @@
     .form-group {
         margin-bottom: 0;
     }
+
+    .info-box {
+        display: flex;
+        align-items: center;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        background-color: white;
+        border-radius: 0.25rem;
+        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    }
+
+    .info-box-icon {
+        font-size: 2rem;
+        padding: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .info-box-content {
+        margin-left: 1rem;
+    }
+
+    .info-box-text {
+        font-weight: 600;
+        font-size: 1.2rem;
+    }
+
+    .info-box-number {
+        font-size: 1.5rem;
+    }
+
 </style>

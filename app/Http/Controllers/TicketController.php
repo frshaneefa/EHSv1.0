@@ -17,42 +17,48 @@ class TicketController extends Controller
     public function index(Request $request)
     {
         $user = Auth::user();
-        $tickets = Ticket::where('user_id', $user->id);
+
+        // Start building the query
+        $ticketsQuery = Ticket::with(['assignedStaff', 'user'])
+            ->where('assigned_staff_id', $user->id) // assuming this is the field for assigned staff
+            ->orWhere('user_id', $user->id); // tickets created by the user
 
         // Apply filters based on request parameters
         if ($request->has('search') && $request->search) {
-            $tickets->where('id', $request->search)
+            $ticketsQuery->where(function ($query) use ($request) {
+                $query->where('id', $request->search)
                     ->orWhere('subject', 'like', '%' . $request->search . '%');
+            });
         }
 
         // Filter by Ticket ID
         if ($request->has('search_ticket_id') && $request->search_ticket_id) {
-            $tickets->where('id', $request->search_ticket_id);
+            $ticketsQuery->where('id', $request->search_ticket_id);
         }
 
         // Filter by Type
         if ($request->has('search_type') && $request->search_type) {
-            $tickets->where('type', $request->search_type);
+            $ticketsQuery->where('type', $request->search_type);
         }
 
         // Filter by Severity
         if ($request->has('search_severity') && $request->search_severity) {
-            $tickets->where('severity', $request->search_severity);
+            $ticketsQuery->where('severity', $request->search_severity);
         }
 
         // Filter by Status
         if ($request->has('search_status') && $request->search_status) {
-            $tickets->where('status', $request->search_status);
+            $ticketsQuery->where('status', $request->search_status);
         }
 
         // Filter by Title
         if ($request->has('search_title') && $request->search_title) {
-            $tickets->where('subject', 'like', '%' . $request->search_title . '%');
+            $ticketsQuery->where('subject', 'like', '%' . $request->search_title . '%');
         }
 
         // Filter by Date
         if ($request->has('search_date') && $request->search_date) {
-            $tickets->whereDate('created_at', $request->search_date);
+            $ticketsQuery->whereDate('created_at', $request->search_date);
         }
 
         // Fetch all the necessary filter options
@@ -61,8 +67,9 @@ class TicketController extends Controller
         $statuses = Ticket::select('status')->distinct()->get()->pluck('status');
 
         // Paginate the results
-        $tickets = $tickets->paginate($request->input('per_page', 10));;
+        $tickets = $ticketsQuery->paginate($request->input('per_page', 10));
 
+        // Pass the tickets and other data to the view
         return view('tickets.index', compact('tickets', 'types', 'severities', 'statuses'));
     }
 
@@ -86,22 +93,29 @@ class TicketController extends Controller
             'attachments.*' => 'nullable|file|mimes:doc,docx,xls,xlsx,ppt,pptx,pdf,jpg,jpeg,png',
         ]);
 
-        // Check if attachments are present
+        // Initialize an array to hold attachment paths
+        $attachmentPaths = [];
+
+        // Handle file uploads
         if ($request->hasFile('attachments')) {
-            $attachments = [];
             foreach ($request->file('attachments') as $file) {
-                $path = $file->store('attachments', 'public');
-                $attachments[] = $path;
+                $originalName = $file->getClientOriginalName(); // Get original file name
+                $path = $file->storeAs('attachments', $originalName, 'public'); // Save with original name
+                $attachmentPaths[] = $path; // Store path for later use
             }
-            $data['attachments'] = json_encode($attachments);
-        } else {
-            $data['attachments'] = null;
         }
 
         // Assign the authenticated user's ID to the 'user_id' field
         $data['user_id'] = auth()->user()->id;
         // Assign the authenticated user's agensi ID to the 'agensi_tid' field
         $data['agensi_tid'] = auth()->user()->agensi_id;
+
+        // Convert attachment paths to JSON format if it's not empty
+        if (!empty($attachmentPaths)) {
+            $data['attachments'] = json_encode($attachmentPaths); // Store path in JSON format
+        } else {
+            $data['attachments'] = null; // Set to null if no attachments
+        }
 
         // Attempt to create the ticket and send the email
         try {
@@ -131,10 +145,11 @@ class TicketController extends Controller
 
     public function show($id)
     {
-        $ticket = Ticket::findOrFail($id);
+        // Eager load the assigned staff and user relationships
+        $ticket = Ticket::with(['assignedStaff', 'user'])->findOrFail($id);
 
         // Ensure the user is authorized to view this ticket
-        if ($ticket->user_id !== auth()->id()) {
+        if ($ticket->user_id !== auth()->id() && ($ticket->assigned_staff_id !== auth()->id() && auth()->user()->role !== 'admin')) {
             abort(403, 'Unauthorized action.');
         }
 
@@ -175,13 +190,21 @@ class TicketController extends Controller
             'attachments.*' => 'nullable|file|mimes:doc,docx,xls,xlsx,ppt,pptx,pdf,jpg,jpeg,png',
         ]);
 
+        // Initialize an array to hold attachment paths
+        $attachmentPaths = [];
+
+        // Handle file uploads
         if ($request->hasFile('attachments')) {
-            $attachments = json_decode($ticket->attachments, true) ?? [];
             foreach ($request->file('attachments') as $file) {
-                $path = $file->store('attachments', 'public');
-                $attachments[] = $path;
+                $originalName = $file->getClientOriginalName(); // Get original file name
+                $path = $file->storeAs('attachments', $originalName, 'public'); // Save with original name
+                $attachmentPaths[] = $path; // Store path for later use
             }
-            $data['attachments'] = json_encode($attachments);
+
+            // Convert attachment paths to JSON format
+            if (!empty($attachmentPaths)) {
+                $data['attachments'] = json_encode($attachmentPaths); // Store path in JSON format
+            }
         }
 
         $ticket->update($data);
@@ -214,6 +237,15 @@ class TicketController extends Controller
         // Render a view to display the tickets for printing
         return view('tickets.print', compact('tickets'));
     }
+
+    public function assignedTickets()
+    {
+        // Assuming there's an 'assigned_staff_id' column in the tickets table for staff ID
+        $tickets = Ticket::where('assigned_staff_id', Auth::id())->get();
+
+        return view('tickets.assigned', compact('tickets'));
+    }
+    
 }
 
 

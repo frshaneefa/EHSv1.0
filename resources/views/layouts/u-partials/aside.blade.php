@@ -62,6 +62,15 @@
                   <p>Create Ticket</p>
                 </a>
               </li>
+              <!-- Staff Assigned Tickets -->
+              @if(Auth::user()->usertype === 'staff') <!-- Replace this condition with your role-checking logic -->
+                <li class="nav-item">
+                    <a href="{{ route('tickets.assigned') }}" class="nav-link {{ request()->routeIs('tickets.assigned') ? 'active' : '' }}">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Assigned Tickets</p>
+                    </a>
+                </li>
+                @endif
             </ul>
           </li>
 

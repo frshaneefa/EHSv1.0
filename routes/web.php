@@ -56,6 +56,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/ticket-dashboard', [TicketController::class, 'index'])->name('tickets.index');
     Route::get('/ticket/{id}', [TicketController::class, 'show'])->name('tickets.show');
     Route::get('/tickets/print', [TicketController::class, 'print'])->name('tickets.print');
+    Route::get('/tickets/assigned', [TicketController::class, 'assignedTickets'])->name('tickets.assigned');
+
 
 });
 
@@ -80,6 +82,8 @@ Route::middleware('auth', 'admin')->group(function () {
     Route::post('admin/tickets/store', [AdminTicketController::class, 'store'])->name('admin.tickets.store');
     Route::get('admin/ticket/{id}', [AdminTicketController::class, 'show'])->name('admin.tickets.show');
     Route::get('admin/tickets/print', [AdminTicketController::class, 'print'])->name('admin.tickets.print');
+    Route::post('admin/tickets/{ticket}/assign', [AdminTicketController::class, 'assignStaff'])->name('admin.tickets.assign');
+
 
     Route::get('admin/ticket/{id}/edit', [AdminTicketController::class, 'edit'])->name('admin.tickets.edit');
     Route::put('admin/ticket/{id}', [AdminTicketController::class, 'update'])->name('admin.tickets.update');

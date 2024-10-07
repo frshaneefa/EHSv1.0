@@ -16,6 +16,7 @@ use Illuminate\View\View;
 
 use Illuminate\Http\Request;
 use App\Models\Ticket; // Assuming you have a Ticket model
+use App\Models\ContactSubmission;
 
 class HomeController extends Controller
 {
@@ -52,19 +53,38 @@ class HomeController extends Controller
         $totalTickets = array_sum($monthlyTicketsData);
         $totalUsers = array_sum($monthlyUsersData);
 
+        // Additional metrics
+        // 1. Count of resolved tickets
+        $resolvedTickets = Ticket::where('status', 'resolved')->count();
+
+        // 2. Count of new user requests (assuming 'pending' status is used for new requests)
+        $newUserRequests = ContactSubmission::whereDate('created_at', Carbon::today())->count();
+
+        // 3. Count of new tickets created today
+        // $newTickets = Ticket::whereDate('created_at', Carbon::today())->count();
+        $newTickets = Ticket::where('status', 'submitted')->count();
+
+        // 4. Count of critical tickets (assuming 'critical' priority is used)
+        $criticalTickets = Ticket::where('severity', 'critical')->count();
+
         // Pass data to the view
         return view('admin.dashboard', [
             'monthlyTickets' => $monthlyTicketsData,
             'monthlyUsers' => $monthlyUsersData,
             'totalTickets' => $totalTickets,
             'totalUsers' => $totalUsers,
-            'selectedYear' => $year
+            'selectedYear' => $year,
+            'resolvedTickets' => $resolvedTickets,
+            'newUserRequests' => $newUserRequests,
+            'newTickets' => $newTickets,
+            'criticalTickets' => $criticalTickets
         ]);
     }
 
     public function listUsers(Request $request)
     {
         $agensis = Agensi::all(); // Fetch all agensis
+        $users = User::query();
 
         // Get the 'per_page' query parameter, defaulting to 10 if not present
         $perPage = $request->get('per_page', 10);
@@ -81,7 +101,14 @@ class HomeController extends Controller
 
         $users = $query->paginate($perPage);
 
-        return view('admin.users.index', compact('agensis', 'users', 'search'));
+        // Count users by user type
+        $userCounts = [
+            'admin' => User::where('usertype', 'admin')->count(),
+            'staff' => User::where('usertype', 'staff')->count(),
+            'user' => User::where('usertype', 'user')->count(),
+        ];
+
+        return view('admin.users.index', compact('agensis', 'users', 'search', 'userCounts'));
     }
 
 
@@ -89,8 +116,10 @@ class HomeController extends Controller
     {
         $agensis = Agensi::all(); // Fetch all agensis
         $users = User::all(); // Fetch all users from the database
+        // Fetching new user requests
+        $submissions = ContactSubmission::orderBy('created_at', 'desc')->take(5)->get(); // Adjust as needed
 
-        return view('admin.users.create', compact('agensis','users'));
+        return view('admin.users.create', compact('agensis','users', 'submissions'));
     }
 
     /**

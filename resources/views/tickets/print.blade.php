@@ -174,20 +174,20 @@
                     <th colspan="4">Certified By</th>
                 </tr>
                 <tr>
-                    <td colspan="1">Sign Off Date:<br><br>{{ $ticket->created_at->setTimezone('Asia/Kuala_Lumpur')->format('d/m/y') }}</td>
+                    <td colspan="1">Sign Off Date:<br><br>{{ $ticket->closed_at->setTimezone('Asia/Kuala_Lumpur')->format('d/m/y') }}</td>
                     <td colspan="4" rowspan="4" style="height: 120px; text-align: left;">
-                        Name: <br><br>
-                        Designation: <br><br><br><br><br><br>
+                        Name: {{ $ticket->assignedStaff->name ?? 'N/A' }}<br><br>
+                        Designation: {{ $ticket->assignedStaff->designation ?? 'N/A' }}<br><br><br><br><br><br>
                         Company Chop:
                     </td> <!-- Adjust the height as needed -->
                     <td colspan="4" rowspan="4" style="height: 120px; text-align: left;">    
-                        Name: <br><br>
-                        Designation: <br><br><br><br><br><br>
+                        Name: {{ $ticket->user->name ?? 'N/A' }}<br><br>
+                        Designation: {{ $ticket->user->designation ?? 'N/A' }}<br><br><br><br><br><br>
                         Company Chop:
                     </td> <!-- Adjust the height as needed -->
                 </tr>
                 <tr>
-                    <td colspan="1">Sign Off Time:<br><br>{{ $ticket->created_at->setTimezone('Asia/Kuala_Lumpur')->format('H:i') }}</td>
+                    <td colspan="1">Sign Off Time:<br><br>{{ $ticket->closed_at->setTimezone('Asia/Kuala_Lumpur')->format('H:i') }}</td>
                 </tr>
             </table>
         </div>

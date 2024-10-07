@@ -34,6 +34,7 @@
                     </div>
                     <div class="form-group">
                         <label for="details">Details</label>
+                        <p style="font-size: 0.85rem; color: grey;">* Please enter which Agensi you are associated with, and your purpose.</p> <!-- Comment to prompt user -->
                         <textarea id="details" name="details" rows="4" required></textarea>
                     </div>
                     <button type="submit" class="submit-button">Submit</button>
