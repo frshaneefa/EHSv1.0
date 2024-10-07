@@ -66,6 +66,14 @@
                                         <div class="p-6 text-gray-900 dark:text-gray-100">
                                             <div class="overflow-x-auto">
                                                 <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                                                    <div>
+                                                        <select id="entriesPerPage" class="form-select" aria-label="Entries per page">
+                                                            <option {{ request('per_page') == 10 ? 'selected' : '' }} value="10">Show 10</option>
+                                                            <option {{ request('per_page') == 20 ? 'selected' : '' }} value="20">Show 20</option>
+                                                            <option {{ request('per_page') == 50 ? 'selected' : '' }} value="50">Show 50</option>
+                                                            <option {{ request('per_page') == 100 ? 'selected' : '' }} value="100">Show 100</option>
+                                                        </select>
+                                                    </div>    
                                                     <div style="display: flex; gap: 0.3rem;">
                                                         <form action="{{ route('admin.users.index') }}" method="GET" style="display: flex; gap: 0.3rem;">
                                                             <input type="hidden" name="per_page" value="{{ request('per_page', 10) }}">
