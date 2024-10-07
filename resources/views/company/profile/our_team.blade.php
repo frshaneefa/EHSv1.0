@@ -108,7 +108,7 @@
                         <h3 class="member-name">Abdullah Egol</h3>
                         <p class="member-designation">Account Manager</p>
                         <p class="member-contact">
-                            <a href="mailto:frshaneefa@enetech.my"><i class="fas fa-envelope"></i></a>
+                            <a href="mailto:abdullah@enetech.my"><i class="fas fa-envelope"></i></a>
                             <!-- <a href="https://linkedin.com/in/member8" target="_blank"><i class="fab fa-linkedin"></i></a> -->
                         </p>
                     </div>

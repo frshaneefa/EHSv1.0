@@ -85,14 +85,6 @@
                                         <div class="p-6 text-gray-900 dark:text-gray-100">
                                             <div class="overflow-x-auto">
                                                 <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
-                                                    <div>
-                                                        <select id="entriesPerPage" class="form-select" aria-label="Entries per page">
-                                                            <option {{ request('per_page') == 10 ? 'selected' : '' }} value="10">Show 10</option>
-                                                            <option {{ request('per_page') == 20 ? 'selected' : '' }} value="20">Show 20</option>
-                                                            <option {{ request('per_page') == 50 ? 'selected' : '' }} value="50">Show 50</option>
-                                                            <option {{ request('per_page') == 100 ? 'selected' : '' }} value="100">Show 100</option>
-                                                        </select>
-                                                    </div>
                                                     <div style="display: flex; gap: 0.3rem;">
                                                         <form action="{{ route('admin.tickets.index') }}" method="GET" style="display: flex; gap: 0.3rem;">
                                                             <input type="hidden" name="per_page" value="{{ request('per_page', 10) }}">
@@ -225,6 +217,38 @@
                                                         @endforeach
                                                     </tbody>
                                                 </table>
+
+                                                <!-- Custom Pagination Links -->
+                                                <ul class="pagination">
+                                                    <!-- Previous Button -->
+                                                    @if ($tickets->onFirstPage())
+                                                        <li class="paginate_button page-item previous disabled">
+                                                            <a href="#" class="page-link">Previous</a>
+                                                        </li>
+                                                    @else
+                                                        <li class="paginate_button page-item previous">
+                                                            <a href="{{ $tickets->previousPageUrl() }}" class="page-link">Previous</a>
+                                                        </li>
+                                                    @endif
+
+                                                    <!-- Pagination Numbers -->
+                                                    @for ($i = 1; $i <= $tickets->lastPage(); $i++)
+                                                        <li class="paginate_button page-item {{ $i == $tickets->currentPage() ? 'active' : '' }}">
+                                                            <a href="{{ $tickets->url($i) }}" class="page-link">{{ $i }}</a>
+                                                        </li>
+                                                    @endfor
+
+                                                    <!-- Next Button -->
+                                                    @if ($tickets->hasMorePages())
+                                                        <li class="paginate_button page-item next">
+                                                            <a href="{{ $tickets->nextPageUrl() }}" class="page-link">Next</a>
+                                                        </li>
+                                                    @else
+                                                        <li class="paginate_button page-item next disabled">
+                                                            <a href="#" class="page-link">Next</a>
+                                                        </li>
+                                                    @endif
+                                                </ul>
                                             </div>
                                         </div>
                                     </div>
@@ -239,8 +263,6 @@
     </div>
 
 </x-admin-layout>
-
-{{ $tickets->withQueryString()->links() }}
 
 <script>
     document.getElementById('entriesPerPage').addEventListener('change', function() {

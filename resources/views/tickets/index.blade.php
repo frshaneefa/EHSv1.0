@@ -157,6 +157,38 @@
                                                     @endforeach
                                                 </tbody>
                                             </table>
+                                            
+                                            <!-- Custom Pagination Links -->
+                                            <ul class="pagination">
+                                                    <!-- Previous Button -->
+                                                    @if ($tickets->onFirstPage())
+                                                        <li class="paginate_button page-item previous disabled">
+                                                            <a href="#" class="page-link">Previous</a>
+                                                        </li>
+                                                    @else
+                                                        <li class="paginate_button page-item previous">
+                                                            <a href="{{ $tickets->previousPageUrl() }}" class="page-link">Previous</a>
+                                                        </li>
+                                                    @endif
+
+                                                    <!-- Pagination Numbers -->
+                                                    @for ($i = 1; $i <= $tickets->lastPage(); $i++)
+                                                        <li class="paginate_button page-item {{ $i == $tickets->currentPage() ? 'active' : '' }}">
+                                                            <a href="{{ $tickets->url($i) }}" class="page-link">{{ $i }}</a>
+                                                        </li>
+                                                    @endfor
+
+                                                    <!-- Next Button -->
+                                                    @if ($tickets->hasMorePages())
+                                                        <li class="paginate_button page-item next">
+                                                            <a href="{{ $tickets->nextPageUrl() }}" class="page-link">Next</a>
+                                                        </li>
+                                                    @else
+                                                        <li class="paginate_button page-item next disabled">
+                                                            <a href="#" class="page-link">Next</a>
+                                                        </li>
+                                                    @endif
+                                                </ul>
                                         </div>
                                     </div>
                                 </div>
@@ -166,12 +198,9 @@
                 </div>
             </div>
             <!-- /.content -->
-
         </div>
     </div>
 </x-user-layout>
-
-{{ $tickets->withQueryString()->links() }}
 
 <script>
     document.getElementById('entriesPerPage').addEventListener('change', function() {
