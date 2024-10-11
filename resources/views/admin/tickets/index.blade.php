@@ -93,7 +93,7 @@
                                                             <option {{ request('per_page') == 100 ? 'selected' : '' }} value="100">Show 100</option>
                                                         </select>
                                                     </div>
-                                                    <div style="display: flex; gap: 0.3rem;">                                                        
+                                                    <div style="display: flex; gap: 0.3rem;">
                                                         <form action="{{ route('admin.tickets.index') }}" method="GET" style="display: flex; gap: 0.3rem;">
                                                             <input type="hidden" name="per_page" value="{{ request('per_page', 10) }}">
                                                             <input type="text" name="search" class="form-control" placeholder="Search by Ticket ID, Title" value="{{ request('search') }}">
@@ -273,58 +273,45 @@
 </x-admin-layout>
 
 <script>
-    
-        // Change entries per page
-        document.getElementById('entriesPerPage').addEventListener('change', function() {
-            let perPage = this.value;
-            let url = new URL(window.location.href);
-            url.searchParams.set('per_page', perPage);
-            window.location.href = url.toString();
-        });
+    document.getElementById('entriesPerPage').addEventListener('change', function() {
+        let perPage = this.value;
+        let url = new URL(window.location.href);
+        url.searchParams.set('per_page', perPage);
+        window.location.href = url.toString();
+    });
 
-        // Print button click event
-        const printButton = document.getElementById('print-button');
-        if (printButton) { // Check if the print button exists
-            printButton.addEventListener('click', function(event) {
-                event.preventDefault();
-                const checkboxes = document.querySelectorAll('.ticket-checkbox:checked');
-                const ticketIds = Array.from(checkboxes).map(checkbox => checkbox.value);
-                if (ticketIds.length > 0) {
-                    const queryParams = new URLSearchParams({ ticket_ids: ticketIds.join(',') });
-                    window.location.href = `{{ route('tickets.print') }}?${queryParams.toString()}`;
-                } else {
-                    alert('Please select at least one ticket to print.');
-                }
-            });
-        }
-
-        // Toggle select all checkboxes
-        function toggleSelectAll() {
-            const selectAllCheckbox = document.getElementById('select-all');
-            const checkboxes = document.querySelectorAll('.ticket-checkbox');
-            checkboxes.forEach(checkbox => {
-                checkbox.checked = selectAllCheckbox.checked;
-            });
-        }
-
-        // Toggle icon rotation
-        function toggleIcon(element) {
-            const icon = element.querySelector('.icon-rotate');
-            if (icon) { // Check if the icon exists
-                icon.classList.toggle('rotate');
+    document.getElementById('print-button').addEventListener('click', function(event) {
+            event.preventDefault();
+            const checkboxes = document.querySelectorAll('.ticket-checkbox:checked');
+            const ticketIds = Array.from(checkboxes).map(checkbox => checkbox.value);
+            if (ticketIds.length > 0) {
+                const queryParams = new URLSearchParams({ ticket_ids: ticketIds.join(',') });
+                window.location.href = `{{ route('tickets.print') }}?${queryParams.toString()}`;
+            } else {
+                alert('Please select at least one ticket to print.');
             }
-        }
-
-        // Collapse functionality
-        document.querySelectorAll('[data-bs-toggle="collapse"]').forEach(button => {
-            button.addEventListener('click', function() {
-                let icon = this.querySelector('i');
-                if (icon) { // Check if the icon exists
-                    icon.classList.toggle('fa-chevron-down');
-                    icon.classList.toggle('fa-chevron-up');
-                }
-            });
         });
+
+    function toggleSelectAll() {
+        const selectAllCheckbox = document.getElementById('select-all');
+        const checkboxes = document.querySelectorAll('.ticket-checkbox');
+        checkboxes.forEach(checkbox => {
+            checkbox.checked = selectAllCheckbox.checked;
+        });
+    }
+
+    function toggleIcon(element) {
+        const icon = element.querySelector('.icon-rotate');
+        icon.classList.toggle('rotate');
+    }
+
+    document.querySelectorAll('[data-bs-toggle="collapse"]').forEach(button => {
+        button.addEventListener('click', function() {
+            let icon = this.querySelector('i');
+            icon.classList.toggle('fa-chevron-down');
+            icon.classList.toggle('fa-chevron-up');
+        });
+    });
 
 </script>
 

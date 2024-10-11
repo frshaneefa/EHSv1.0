@@ -5,7 +5,7 @@
 
     <!-- Header Section -->
     <header class="header-section" style="background-image: url('{{ asset('images/header1.jpeg') }}');">
-        <div class="container">
+        <div class="container mx-auto">
             <h1 class="header-title">Education Services</h1>
             <p class="breadcrumb">
                 <a href="{{ url('/') }}">Home</a> <span class="separator">&gt;</span> Education Services
@@ -29,7 +29,7 @@
     </section>
 
     <section class="services">
-        <div class="container">
+        <div class="container mx-auto">
             <div class="card">
                 <i class="fas fa-lightbulb fa-3x"></i>
                 <h2><b>Expert Guidance</b></h2>
@@ -49,7 +49,7 @@
     </section>
 
     <section class="services">
-        <div class="container">
+        <div class="container mx-auto">
             <div class="card">
                 <i class="fas fa-balance-scale fa-3x"></i>
                 <h2><b>Integrity and Transparency</b></h2>
@@ -79,7 +79,7 @@
     </section>
 
     <section class="single-column-cards">
-        <div class="container">
+        <div class="container mx-auto">
             <div class="card">
                 <img src="{{ asset('images/edu/1.jpeg') }}" alt="Service 1">
                 <div class="card-content">
@@ -140,7 +140,7 @@
     </section>
 
     <section class="image-logo-section">
-        <div class="container">
+        <div class="container mx-auto">
             <img src="{{ asset('images/edu/1.jpeg') }}" alt="Main Image" class="main-image">
             <div class="logo-container">
                 <h2><b>We collaborate with Leading Education Institutions</b></h2>
