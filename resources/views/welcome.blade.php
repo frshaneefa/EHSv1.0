@@ -70,7 +70,7 @@
             <div class="overlay">
                 <div class="overlay-panel overlay-left">
                     <h1 class="title">Dear Valued<br> Customers</h1>
-                    <p>Please send an email to <br><b>support@enetech.my /<br> PIC: +601137882324</b><br> for the registration. TQ</p>
+                    <p>Please send an email to <br><b>support@enetech.com.my /<br> PIC: +601137882324</b><br> for the registration. TQ</p>
                     <button class="ghost" id="login">Login
                         <i class="lni lni-arrow-left login"></i>
                     </button>

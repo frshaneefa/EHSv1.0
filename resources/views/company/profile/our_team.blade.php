@@ -83,7 +83,7 @@
                         <h3 class="member-name">MD Narus</h3>
                         <p class="member-designation">Director</p>
                         <p class="member-contact">
-                            <a href="mailto:narus@enetech.my"><i class="fas fa-envelope"></i></a>
+                            <a href="mailto:narus@enetech.com.my"><i class="fas fa-envelope"></i></a>
                             <!-- <a href="https://linkedin.com/in/member8" target="_blank"><i class="fab fa-linkedin"></i></a> -->
                         </p>
                     </div>
@@ -95,7 +95,7 @@
                         <h3 class="member-name">Izdihar Abdul Wahab</h3>
                         <p class="member-designation">Business Development Director</p>
                         <p class="member-contact">
-                            <a href="mailto:izdihar@enetech.my"><i class="fas fa-envelope"></i></a>
+                            <a href="mailto:izdihar@enetech.com.my"><i class="fas fa-envelope"></i></a>
                             <!-- <a href="https://linkedin.com/in/member8" target="_blank"><i class="fab fa-linkedin"></i></a> -->
                         </p>
                     </div>
@@ -103,24 +103,24 @@
                 
                 <!-- Boss 2 -->
                 <div class="team-member">
-                    <img src="{{ asset('images/team/user_2.png') }}" alt="Boss 2" class="member-image">
+                    <img src="{{ asset('images/team/Lah.png') }}" alt="Boss 2" class="member-image">
                     <div class="member-info">
                         <h3 class="member-name">Abdullah Egol</h3>
                         <p class="member-designation">Account Manager</p>
                         <p class="member-contact">
-                            <a href="mailto:abdullah@enetech.my"><i class="fas fa-envelope"></i></a>
+                            <a href="mailto:abdullah@enetech.com.my"><i class="fas fa-envelope"></i></a>
                             <!-- <a href="https://linkedin.com/in/member8" target="_blank"><i class="fab fa-linkedin"></i></a> -->
                         </p>
                     </div>
                 </div>
                 <!-- Boss 4 -->
                 <div class="team-member">
-                    <img src="{{ asset('images/team/user_2.png') }}" alt="Boss 4" class="member-image">
+                    <img src="{{ asset('images/team/Zuhairi.jpeg') }}" alt="Boss 4" class="member-image">
                     <div class="member-info">
                         <h3 class="member-name">Mohd Zuhairi</h3>
                         <p class="member-designation">Account Manager</p>
                         <p class="member-contact">
-                            <a href="mailto:mz.seman@enetech.my"><i class="fas fa-envelope"></i></a>
+                            <a href="mailto:mz.seman@enetech.com.my"><i class="fas fa-envelope"></i></a>
                             <!-- <a href="https://linkedin.com/in/member8" target="_blank"><i class="fab fa-linkedin"></i></a> -->
                         </p>
                     </div>
@@ -133,7 +133,7 @@
                         <h3 class="member-name">Nik Nur Fatin Aisyah</h3>
                         <p class="member-designation">Admin Executive</p>
                         <p class="member-contact">
-                            <a href="mailto:fatinaisyah@enetech.my"><i class="fas fa-envelope"></i></a>
+                            <a href="mailto:fatinaisyah@enetech.com.my"><i class="fas fa-envelope"></i></a>
                             <!-- <a href="https://linkedin.com/in/member8" target="_blank"><i class="fab fa-linkedin"></i></a> -->
                         </p>
                     </div>
@@ -145,7 +145,7 @@
                         <h3 class="member-name">Nor Kartina</h3>
                         <p class="member-designation">Project Manager</p>
                         <p class="member-contact">
-                            <a href="mailto:kartina@enetech.my"><i class="fas fa-envelope"></i></a>
+                            <a href="mailto:kartina@enetech.com.my"><i class="fas fa-envelope"></i></a>
                             <!-- <a href="https://linkedin.com/in/member8" target="_blank"><i class="fab fa-linkedin"></i></a> -->
                         </p>
                     </div>
@@ -157,7 +157,7 @@
                         <h3 class="member-name">Muhd Khairuddin</h3>
                         <p class="member-designation">Technical Manager</p>
                         <p class="member-contact">
-                            <a href="mailto:khairuddin@enetech.my"><i class="fas fa-envelope"></i></a>
+                            <a href="mailto:khairuddin@enetech.com.my"><i class="fas fa-envelope"></i></a>
                             <!-- <a href="https://linkedin.com/in/member8" target="_blank"><i class="fab fa-linkedin"></i></a> -->
                         </p>
                     </div>
@@ -178,7 +178,7 @@
                         <h3 class="member-name">Farah Ilyana</h3>
                         <p class="member-designation">Sales Coordinator</p>
                         <p class="member-contact">
-                            <a href="mailto:farahilyana@enetech.my"><i class="fas fa-envelope"></i></a>
+                            <a href="mailto:farahilyana@enetech.com.my"><i class="fas fa-envelope"></i></a>
                             <!-- <a href="https://linkedin.com/in/member8" target="_blank"><i class="fab fa-linkedin"></i></a> -->
                         </p>
                     </div>
@@ -190,7 +190,7 @@
                         <h3 class="member-name">Ainin Sofia</h3>
                         <p class="member-designation">Sales Coordinator</p>
                         <p class="member-contact">
-                            <a href="mailto:nurainin@enetech.my"><i class="fas fa-envelope"></i></a>
+                            <a href="mailto:nurainin@enetech.com.my"><i class="fas fa-envelope"></i></a>
                             <!-- <a href="https://linkedin.com/in/member8" target="_blank"><i class="fab fa-linkedin"></i></a> -->
                         </p>
                     </div>
@@ -202,7 +202,7 @@
                         <h3 class="member-name">Fatin Amira</h3>
                         <p class="member-designation">Project Coordinator</p>
                         <p class="member-contact">
-                        <a href="mailto:fatinmira@enetech.my"><i class="fas fa-envelope"></i></a>
+                        <a href="mailto:fatinmira@enetech.com.my"><i class="fas fa-envelope"></i></a>
                         <!--  <a href="https://linkedin.com/in/member8" target="_blank"><i class="fab fa-linkedin"></i></a> --> 
                         </p>
                     </div>
@@ -215,7 +215,7 @@
                         <h3 class="member-name">Mohamad Rakimi</h3>
                         <p class="member-designation">System Engineer</p>
                         <p class="member-contact">
-                        <a href="mailto:rakimi@enetech.my"><i class="fas fa-envelope"></i></a>
+                        <a href="mailto:rakimi@enetech.com.my"><i class="fas fa-envelope"></i></a>
                         <!--  <a href="https://linkedin.com/in/member8" target="_blank"><i class="fab fa-linkedin"></i></a> -->
                         </p>
                     </div>
@@ -225,9 +225,9 @@
                     <img src="{{ asset('images/team/Shah.png') }}" alt="Member 6" class="member-image">
                     <div class="member-info">
                         <h3 class="member-name">Shah Ikmal</h3>
-                        <p class="member-designation">System Enginner</p>
+                        <p class="member-designation">System Engineer</p>
                         <p class="member-contact">
-                        <a href="mailto:mohd.shah@enetech.my"><i class="fas fa-envelope"></i></a>
+                        <a href="mailto:mohd.shah@enetech.com.my"><i class="fas fa-envelope"></i></a>
                         <!--  <a href="https://linkedin.com/in/member8" target="_blank"><i class="fab fa-linkedin"></i></a> --> 
                         </p>
                     </div>
@@ -237,9 +237,9 @@
                     <img src="{{ asset('images/team/Faris.png') }}" alt="Member 7" class="member-image">
                     <div class="member-info">
                         <h3 class="member-name">Faris Irfan</h3>
-                        <p class="member-designation">System Enginner</p>
+                        <p class="member-designation">System Engineer</p>
                         <p class="member-contact">
-                        <a href="mailto:frshaneefa@enetech.my"><i class="fas fa-envelope"></i></a>
+                        <a href="mailto:frshaneefa@enetech.com.my"><i class="fas fa-envelope"></i></a>
                         <!--<a href="https://linkedin.com/in/member8" target="_blank"><i class="fab fa-linkedin"></i></a> -->
                         </p>
                     </div>
@@ -251,7 +251,7 @@
                         <h3 class="member-name">Adam Wiryahadi</h3>
                         <p class="member-designation">Pre-Sales Executive</p>
                         <p class="member-contact">
-                            <a href="mailto:m.adam@enetech.my"><i class="fas fa-envelope"></i></a>
+                            <a href="mailto:m.adam@enetech.com.my"><i class="fas fa-envelope"></i></a>
                             <!--<a href="https://linkedin.com/in/member8" target="_blank"><i class="fab fa-linkedin"></i></a> -->
                         </p>
                     </div>

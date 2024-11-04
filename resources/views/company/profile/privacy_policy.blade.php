@@ -61,7 +61,7 @@
             J27/J, SECTION 27, 40400 SHAH ALAM,<br>
             SELANGOR.<br>
             603-5102 9093 / 6019 310 8705<br>
-            info@enetech.my</p>
+            info@enetech.com.my</p>
         </section>
     </div>
 

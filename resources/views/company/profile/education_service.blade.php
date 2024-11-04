@@ -291,7 +291,7 @@
                 <p>603 5102 9093 / 6019 310 8705</p>
                 
                 <h3><i class="fas fa-envelope"></i>Email Information</h3>
-                <p><a href="mailto:info@enetech.my">info@enetech.my</a></p>
+                <p><a href="mailto:info@enetech.com.my">info@enetech.com.my</a></p>
             </div>
         </div>
     </section>

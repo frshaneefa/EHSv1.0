@@ -39,7 +39,7 @@ return [
 
         'smtp' => [
             'transport' => 'smtp',
-            'host' => env('MAIL_HOST', 'smtp.enetech.my'),
+            'host' => env('MAIL_HOST', 'smtp.enetech.com.my'),
             'port' => env('MAIL_PORT', 587),
             'encryption' => env('MAIL_ENCRYPTION', 'tls'),
             'username' => env('MAIL_USERNAME'),
@@ -108,7 +108,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'support@enetech.my'),
+        'address' => env('MAIL_FROM_ADDRESS', 'support@enetech.com.my'),
         'name' => env('MAIL_FROM_NAME', 'Enetech Support'),
     ],
 

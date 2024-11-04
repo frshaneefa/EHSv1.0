@@ -116,7 +116,7 @@
                     <p><b>ENETECH SDN BHD 202001042952 (1399273A)<br>
                     No. 32A (1st Floor), Jalan Kota Raja J27/J, Section 27,<br>
                     40400 Shah Alam, Selangor<br>
-                    Tel: 03-5102 9093 Fax: 03-5192 0994 Website: www.enetech.my</b></p>
+                    Tel: 03-5102 9093 Fax: 03-5192 0994 Website: www.enetech.com.my</b></p>
                 </div>
             </div>
             <table>
