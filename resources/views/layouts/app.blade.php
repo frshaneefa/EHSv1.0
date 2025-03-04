@@ -92,12 +92,9 @@
                     </div>
                     <a href="{{ route('company.events') }}" class="nav-link {{ request()->routeIs('company.events') ? 'active' : '' }}">EVENTS</a>
                     <a href="{{ route('company.contact') }}" class="nav-link {{ request()->routeIs('company.contact') ? 'active' : '' }}">CONTACT US</a>
-                </div>
-
-                <!-- Login Button -->
-                <div class="navbar-login">
                     <a href="{{ route('login') }}" class="login-btn">LOGIN</a>
                 </div>
+
             </div>
         </nav>
 
@@ -172,7 +169,7 @@
                             <div class="footer-logo">
                                 <img src="{{ asset('images/logo-footer.png') }}" alt="Logo" class="footer-logo-img">
                                 <p class="footer-text"><i class="fas fa-map-marker-alt"></i> ENETECH SDN BHD NO. 32A (1ST FLOOR),JALAN KOTA<br>RAJA J27/J, SECTION 27, 40400 SHAH ALAM,<br>SELANGOR. </p>
-                                <p class="footer-text"><i class="fas fa-envelope"></i> info@enetech.my</p>
+                                <p class="footer-text"><i class="fas fa-envelope"></i> info@enetech.com.my</p>
                                 <p class="footer-text"><i class="fas fa-phone"></i> 603-5102 9093 / 6019 310 8705</p>
                             </div>
                         </td>
@@ -216,8 +213,8 @@
         </div>
         <hr>
         <div class="footer-bottom">
-            <span class="footer-left">Enetech.my</span>
-            <span class="footer-right">&copy; 2024 Your Company. All rights reserved.</span>
+            <span class="footer-left">Enetech.com.my</span>
+            <span class="footer-right">&copy; 2024 Enetech. All rights reserved.</span>
         </div>
     </footer>
 </body>

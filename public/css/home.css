@@ -13,12 +13,12 @@
 }
 
 header {
-    padding: 450px 100px;
+    padding: 100px 20px;
     background-color: #f8f9fa;
 }
 
 header .container {
-    max-width: 1600px;
+    max-width: 800px;
     margin: 0 auto;
 }
 
@@ -63,6 +63,32 @@ header .btn {
 
 .btn-contact:hover {
     background-color: #a80000;
+}
+
+/* Media Query for Mobile Devices */
+@media (max-width: 768px) {
+    header {
+        padding: 100px 20px;  /* Reduce padding on small screens */
+    }
+
+    header h1 {
+        font-size: 2.5rem;  /* Decrease the font size for smaller screens */
+        line-height: 1.4;  /* Adjust line height to prevent the heading from being too close to the paragraph */
+    }
+
+    header p {
+        font-size: 1rem;  /* Reduce font size of paragraph */
+        margin-top: 15px;  /* Add some space between the paragraph and the heading */
+    }
+
+    header .btn {
+        margin-top: 20px;  /* Adjust spacing for button */
+    }
+
+    .btn-contact {
+        padding: 12px 24px;  /* Increase button padding for easier clickability */
+        font-size: 1.1rem;  /* Adjust button text size */
+    }
 }
 
 /* //////////////////////////////////////////////////////////////////////////////////////////////////////// */

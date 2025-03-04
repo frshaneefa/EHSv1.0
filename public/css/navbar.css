@@ -1,74 +1,78 @@
-/* Navbar base styles */
+/* Base Navbar Styles */
 .navbar {
-    background-color: rgba(255, 255, 255, 0.8); /* White with 80% opacity */
-    backdrop-filter: blur(10px); /* Optional: Add blur effect */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Shadow for better contrast */
-    position: relative;
+    background: rgba(255, 255, 255, 0.9); /* Transparent white background */
+    backdrop-filter: blur(10px); /* Add blur effect */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* Subtle shadow */
+    position: sticky; /* Stay at the top while scrolling */
+    top: 0;
+    z-index: 100;
 }
 
-/* Navbar container layout */
+/* Navbar Layout */
 .navbar-container {
     display: flex;
-    justify-content: space-between; /* Space out logo, menu, and login button */
+    justify-content: space-between; /* Distribute items evenly */
     align-items: center;
+    max-width: 1200px;
     height: 4rem;
     margin: 0 auto;
-    max-width: 1200px; /* Set a maximum width */
-    padding: 0 1rem; /* Add some padding for smaller screens */
+    padding: 0 1rem; /* Side padding */
 }
 
-/* Logo styles */
+/* Logo */
 .navbar-logo {
-    padding-right: 2rem; /* Adjust as needed */
+    flex: 0 0 auto; /* Ensure logo doesn't shrink */
+    padding-right: 1.5rem;
 }
 
-.navbar-logo .logo {
+.navbar-logo img {
     height: 2rem;
     width: auto;
 }
 
-/* Navbar links (centered) */
+/* Navbar Links */
 .navbar-links {
     display: flex;
-    flex: 1; /* Let navbar links grow to fill space */
     justify-content: center; /* Center the links */
-    gap: 2rem; /* Space between links */
+    align-items: center;
+    flex: 1; /* Take up available space */
+    gap: 1.5rem; /* Spacing between links */
 }
 
-/* Link styles */
+/* Link Styles */
 .nav-link {
-    color: #1a202c; /* Default text color */
+    color: #1a202c;
     text-decoration: none;
-    transition: color 0.3s; /* Smooth transition */
+    font-size: 1rem;
+    font-weight: 500;
+    transition: color 0.3s;
 }
 
-.nav-link:hover {
-    color: red; /* Change text color to red on hover */
-}
-
+.nav-link:hover,
 .nav-link.active {
-    color: red; /* Change the text color for active links */
-    font-weight: bold; /* Optional: Make the active link bold */
+    color: #e63946; /* Hover and active color */
+    font-weight: bold; /* Optional: Highlight active links */
 }
 
-/* Dropdown menu styles */
+/* Dropdown Menu */
 .nav-item {
     position: relative;
 }
 
 .dropdown-menu {
-    display: none; /* Hide the dropdown by default */
+    display: none;
     position: absolute;
     top: 100%;
     left: 0;
-    background-color: rgba(255, 255, 255, 0.8); /* Same as navbar background */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Shadow for better contrast */
-    z-index: 1000;
-    width: 200px;
-    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.95); /* Match navbar background */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* Add shadow */
+    border-radius: 5px;
+    overflow: hidden;
+    z-index: 20;
+    min-width: 200px;
+    padding: 0.5rem 0;
 }
 
-/* Show the dropdown on hover */
 .nav-item:hover .dropdown-menu {
     display: block;
 }
@@ -76,32 +80,44 @@
 .dropdown-link {
     display: block;
     padding: 0.5rem 1rem;
+    color: #1a202c;
     text-decoration: none;
-    color: #1a202c; /* Default text color */
-    transition: color 0.3s;
+    transition: background 0.3s, color 0.3s;
 }
 
-.dropdown-link:hover {
-    color: red; /* Change text color on hover */
-}
-
+.dropdown-link:hover,
 .dropdown-link.active {
-    color: red; /* Change text color for active links */
-    font-weight: bold;
+    background: #e63946;
+    color: #fff; /* Invert text color */
 }
 
-/* Chevron icon for dropdown */
+/* Chevron Icon for Dropdown */
 .arrow-icon {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     margin-left: 0.5rem;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s;
 }
 
 .nav-item:hover .arrow-icon {
     transform: rotate(90deg);
 }
 
-/* Hamburger menu (hidden by default, shown on mobile) */
+/* Login Button */
+.login-btn {
+    background: #e63946;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+
+.login-btn:hover {
+    background: #c53030;
+}
+
+/* Hamburger Menu for Mobile */
 .hamburger {
     display: none;
     cursor: pointer;
@@ -110,78 +126,38 @@
 .hamburger div {
     width: 1.5rem;
     height: 0.2rem;
-    background-color: #1a202c;
+    background: #1a202c;
     margin: 0.3rem 0;
-    transition: 0.3s;
+    transition: transform 0.3s;
 }
 
-/* Login button styles */
-.navbar-login {
-    margin-left: auto;
-}
-
-.login-btn {
-    background-color: red;
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-}
-
-.login-btn:hover {
-    background-color: darkred;
-}
-
-/* Responsive styles */
+/* Responsive Styles */
 @media (max-width: 768px) {
-    .navbar {
-        position: relative; /* Ensure the navbar can contain absolute positioned children */
-    }
-
     .navbar-links {
-        display: none; /* Hide links by default */
-        flex-direction: column; /* Stack links vertically */
+        display: none; /* Hidden by default */
+        flex-direction: column;
         position: absolute;
-        top: 4rem; /* Adjust based on navbar height */
+        top: 4rem;
         right: 0;
-        background-color: rgba(255, 255, 255, 0.95); /* Slightly more opaque for better visibility */
-        width: 100%; /* Full width */
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
         padding: 1rem;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow for dropdown */
-        z-index: 1000; /* Ensure it appears above other content */
+        width: 100%;
+        gap: 1rem;
+        z-index: 15;
     }
 
     .navbar-links.active {
         display: flex; /* Show links when active */
     }
 
+    .login-btn {
+        width: 100%; /* Full width in mobile view */
+        text-align: center;
+    }
+
     .hamburger {
-        display: block; /* Show hamburger icon on small screens */
-        cursor: pointer;
-    }
-
-    .hamburger div {
-        width: 25px; /* Set width for hamburger bars */
-        height: 3px; /* Set height for hamburger bars */
-        background-color: black; /* Set color for hamburger bars */
-        margin: 4px 0; /* Space between bars */
-        transition: all 0.3s ease;
-    }
-
-    .hamburger.active div:nth-child(1) {
-        transform: rotate(-45deg) translate(-5px, 6px); /* Adjust translation for better visual */
-    }
-
-    .hamburger.active div:nth-child(2) {
-        opacity: 0; /* Hide the middle bar */
-    }
-
-    .hamburger.active div:nth-child(3) {
-        transform: rotate(45deg) translate(-5px, -6px); /* Adjust translation for better visual */
-    }
-
-    .navbar-login {
-        display: none; /* Hide login button on mobile */
+        display: block; /* Show hamburger icon on mobile */
+        z-index: 20; /* Stay above everything */
     }
 }
