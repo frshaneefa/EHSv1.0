@@ -134,10 +134,10 @@
                                                                             Edit
                                                                         </a>
                                                                         <!-- Delete User -->
-                                                                        <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" style="display: inline;">
+                                                                        <form id="delete-form-{{ $user->id }}" action="{{ route('admin.users.destroy', $user->id) }}" method="POST" style="display: inline;">
                                                                             @csrf
                                                                             @method('DELETE')
-                                                                            <button type="submit" class="btn btn-danger btn-sm">
+                                                                            <button type="button" class="btn btn-danger btn-sm delete-btn" data-user-id="{{ $user->id }}">
                                                                                 Delete
                                                                             </button>
                                                                         </form>
@@ -182,21 +182,15 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-
-                                
+                                </div>                                
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- /.content -->
-           
+                <!-- /.content -->           
         </div>
     </div>
-
 </x-admin-layout>
-
-
 
 <script>
     document.getElementById('entriesPerPage').addEventListener('change', function() {
@@ -216,6 +210,25 @@
             selectElement.selectedIndex = selectElement.defaultSelectedIndex;
         }
     }
+
+    document.querySelectorAll('.delete-btn').forEach(button => {
+        button.addEventListener('click', function () {
+            const userId = this.getAttribute('data-user-id');
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "This user will be permanently deleted.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('delete-form-' + userId).submit();
+                }
+            });
+        });
+    });
 </script>
 
 <style>

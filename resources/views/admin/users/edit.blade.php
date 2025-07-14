@@ -34,7 +34,7 @@
                                         </div>
                                     @endif
 
-                                    <form action="{{ route('admin.users.update', $user->id) }}" method="POST">
+                                    <form id="update-user-form" action="{{ route('admin.users.update', $user->id) }}" method="POST">
                                         @csrf
                                         @method('PUT') <!-- Change PATCH to PUT -->
 
@@ -89,7 +89,7 @@
                                         </div>
 
                                         <div class="form-group mt-4">
-                                            <button type="submit" class="btn btn-primary">Update User</button>
+                                            <button type="button" class="btn btn-primary" onclick="confirmUpdate()">Update User</button>
                                             <a href="{{ route('admin.users.index') }}" class="btn btn-secondary">Cancel</a>
                                         </div>
                                     </form>
@@ -103,3 +103,23 @@
         </div>
     </div>
 </x-admin-layout>
+
+<script>
+    function confirmUpdate() {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You are about to update this user's info.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, update',
+            cancelButtonText: 'Cancel',
+            confirmButtonColor: '#28a745',
+            cancelButtonColor: '#3085d6'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('update-user-form').submit();
+            }
+        });
+    }
+</script>
+

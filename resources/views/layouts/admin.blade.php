@@ -16,6 +16,7 @@
 
     <!-- Bootstrap JS (with Popper.js) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -25,54 +26,44 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('backend/dist/css/adminlte.min.css') }}">
     <link rel="icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
-    
-    <style>
-        /* Notification Container */
-            #notifications {
-                position: fixed;
-                bottom: 0;
-                right: 0;
-                margin: 1rem;
-                z-index: 1000;
-            }
-
-            /* Base Notification Style */
-            .notification {
-                display: flex;
-                align-items: center;
-                padding: 1rem;
-                margin-bottom: 1rem;
-                border-radius: 0.375rem;
-                font-size: 1rem;
-                font-weight: 500;
-                color: #fff;
-                max-width: 300px;
-                opacity: 0;
-                transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-                transform: translateY(-20px);
-            }
-
-            /* Success Notification */
-            .notification.success {
-                background-color: #48bb78; /* Green */
-            }
-
-            /* Error Notification */
-            .notification.error {
-                background-color: #f56565; /* Red */
-            }
-
-            /* Show Notification */
-            .notification.show {
-                opacity: 1;
-                transform: translateY(0);
-            }
-    </style>
-
+        
 </head>
 
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
+
+            @if ($errors->any())
+                <script>
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Validation Error',
+                        html: `{!! implode('<br>', $errors->all()) !!}`,
+                        confirmButtonColor: '#d33'
+                    });
+                </script>
+            @endif
+
+            @if (session('success'))
+                <script>
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success',
+                        text: "{{ session('success') }}",
+                        confirmButtonColor: '#3085d6'
+                    });
+                </script>
+            @endif
+
+            @if (session('error'))
+                <script>
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: "{{ session('error') }}",
+                        confirmButtonColor: '#d33'
+                    });
+                </script>
+            @endif
 
     <!-- Navbar -->
     @include('layouts.partials.navbar')
@@ -96,20 +87,6 @@
         </div>
     </aside>
     <!-- /.control-sidebar -->
-
-    <div id="notifications">
-        @if (session('success'))
-            <div class="notification success" role="alert">
-                {{ session('success') }}
-            </div>
-        @endif
-
-        @if (session('error'))
-            <div class="notification error" role="alert">
-                {{ session('error') }}
-            </div>
-        @endif
-    </div>
 
     <!-- Main Footer -->
     @include('layouts.partials.footer')
