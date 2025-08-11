@@ -49,7 +49,7 @@
                                 <i class="fas fa-plus-circle"></i> Create a Ticket
                             </h5>
                             <p class="card-text">Report an issue or request assistance from our support team.</p>
-                            <a href="#" class="btn btn-light">Create Ticket</a>
+                            <a href="{{ route('tickets.create') }}" class="btn btn-light">Create Ticket</a>
                         </div>
                     </div>
                 </div>
@@ -60,7 +60,7 @@
                                 <i class="fas fa-eye"></i> View My Tickets
                             </h5>
                             <p class="card-text">Check the status of your submitted tickets.</p>
-                            <a href="#" class="btn btn-light">View Tickets</a>
+                            <a href="{{ route('tickets.index') }}" class="btn btn-light">View Tickets</a>
                         </div>
                     </div>
                 </div>

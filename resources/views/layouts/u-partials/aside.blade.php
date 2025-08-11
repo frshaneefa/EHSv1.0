@@ -38,11 +38,11 @@
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>Dashboard</p>
             </a>
-          </li>
+          </li>      
 
           <!-- Tickets -->
           <li class="nav-item">
-            <a href="#" class="nav-link {{ request()->routeIs('tickets.index') ? 'active' : '' }} {{ request()->routeIs('tickets.create') ? 'active' : '' }}" data-toggle="collapse" data-target="#tickets-menu">
+            <a href="#" class="nav-link {{ request()->routeIs('tickets.index') ? 'active' : '' }} {{ request()->routeIs('tickets.create') ? 'active' : '' }} {{ request()->routeIs('tickets.assigned') ? 'active' : '' }}" data-toggle="collapse" data-target="#tickets-menu">
               <i class="nav-icon fas fa-ticket-alt"></i>
               <p>
                 Tickets
@@ -63,7 +63,7 @@
                 </a>
               </li>
               <!-- Staff Assigned Tickets -->
-              @if(Auth::user()->usertype === 'staff') <!-- Replace this condition with your role-checking logic -->
+                @if(Auth::user()->usertype === 'staff') <!-- Replace this condition with your role-checking logic -->
                 <li class="nav-item">
                     <a href="{{ route('tickets.assigned') }}" class="nav-link {{ request()->routeIs('tickets.assigned') ? 'active' : '' }}">
                         <i class="far fa-circle nav-icon"></i>
