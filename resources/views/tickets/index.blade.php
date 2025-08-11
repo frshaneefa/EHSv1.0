@@ -139,11 +139,7 @@
                                                                     </div>
                                                                 </td>
                                                                 <td>
-                                                                    @if($ticket->assignedBy)
-                                                                        {{ $ticket->assignedBy->name }}
-                                                                    @else
-                                                                        Not Assigned
-                                                                    @endif
+                                                                    {{ $ticket->assignedStaff ? $ticket->assignedStaff->name : 'Not Assigned' }}
                                                                 </td>
                                                                 <td>
                                                                     <div style="display: flex; gap: 0.5rem;">

@@ -24,6 +24,7 @@ class Ticket extends Model
         'severity',
         'agensi_tid',
         'closed_at',
+        'assigned_staff_id',
     ];
 
     protected $casts = [

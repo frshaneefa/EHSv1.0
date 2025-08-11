@@ -302,5 +302,4 @@ class AdminTicketController extends Controller
 
         return redirect()->route('admin.tickets.index')->with('success', 'Staff assigned successfully.');
     }
-
 }

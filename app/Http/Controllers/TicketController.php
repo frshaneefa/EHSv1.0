@@ -20,9 +20,11 @@ class TicketController extends Controller
 
         // Start building the query
         $ticketsQuery = Ticket::with(['assignedStaff', 'user'])
-            ->where('assigned_staff_id', $user->id) // assuming this is the field for assigned staff
-            ->orWhere('user_id', $user->id); // tickets created by the user
-
+        ->where(function ($query) use ($user) {
+            $query->where('assigned_staff_id', $user->id)
+                  ->orWhere('user_id', $user->id);
+        });
+        
         // Apply filters based on request parameters
         if ($request->has('search') && $request->search) {
             $ticketsQuery->where(function ($query) use ($request) {
