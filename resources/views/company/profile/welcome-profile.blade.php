@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Enetech</title>
         <link rel="stylesheet" href="{{ asset('css/welcome.css') }}"> <!-- Link to your CSS file -->
+        <link rel="icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
     </head>
 
     <body style="background-image: url('{{ asset('images/BG_3.jpeg') }}'); background-size: cover; background-position: center; background-repeat: no-repeat;">

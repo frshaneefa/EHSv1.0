@@ -138,18 +138,6 @@
                         </p>
                     </div>
                 </div>
-                <!-- Boss 3 -->
-                <div class="team-member">
-                    <img src="{{ asset('images/team/kartina.png') }}" alt="Boss 3" class="member-image">
-                    <div class="member-info">
-                        <h3 class="member-name">Nor Kartina</h3>
-                        <p class="member-designation">Project Manager</p>
-                        <p class="member-contact">
-                            <a href="mailto:kartina@enetech.com.my"><i class="fas fa-envelope"></i></a>
-                            <!-- <a href="https://linkedin.com/in/member8" target="_blank"><i class="fab fa-linkedin"></i></a> -->
-                        </p>
-                    </div>
-                </div>
                 <!-- Boss 4 -->
                 <div class="team-member">
                     <img src="{{ asset('images/team/Din.png') }}" alt="Boss 4" class="member-image">
@@ -171,19 +159,7 @@
     <section class="section-other-members">
         <div class="container mx-auto">
             <div class="other-members-container">
-                <!-- Other Member 2 -->
-                <div class="team-member">
-                    <img src="{{ asset('images/team/Farah.png') }}" alt="Member 2" class="member-image">
-                    <div class="member-info">
-                        <h3 class="member-name">Farah Ilyana</h3>
-                        <p class="member-designation">Sales Coordinator</p>
-                        <p class="member-contact">
-                            <a href="mailto:farahilyana@enetech.com.my"><i class="fas fa-envelope"></i></a>
-                            <!-- <a href="https://linkedin.com/in/member8" target="_blank"><i class="fab fa-linkedin"></i></a> -->
-                        </p>
-                    </div>
-                </div>
-                <!-- Other Member 3 -->
+                 <!-- Other Member 3 -->
                 <div class="team-member">
                     <img src="{{ asset('images/team/Ainin.png') }}" alt="Member 3" class="member-image">
                     <div class="member-info">
@@ -256,7 +232,6 @@
                         </p>
                     </div>
                 </div>
-                
             </div>
         </div>
     </section>
