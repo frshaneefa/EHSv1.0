@@ -191,7 +191,7 @@
 
     <!-- Trusted Organizations Section -->
     <section class="trusted-organizations">
-        <h2 class="trust-h2"><b>Trusted By The Country's Best Organizations</b></h2>
+        <h2 class="trust-h2 text-white"><b>Trusted By The Country's Best Organizations</b></h2>
         <div class="logo-container">
             <div class="logo-wrapper">
                 <div class="logo-slider">
@@ -253,6 +253,9 @@
                     </div>
                     <div class="logo-card">
                         <img src="images/organization/18.png" alt="Organization 18">
+                    </div>
+                    <div class="logo-card">
+                        <img src="images/organization/19.png" alt="Organization 19">
                     </div>
                     <!-- Add more logos as needed -->
                 </div>

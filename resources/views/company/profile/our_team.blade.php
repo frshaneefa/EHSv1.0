@@ -88,9 +88,9 @@
                         </p>
                     </div>
                 </div>
-                <!-- Boss 1 -->
+                <!-- Boss 2 -->
                 <div class="team-member">
-                    <img src="{{ asset('images/team/Tiaq.png') }}" alt="Boss 1" class="member-image">
+                    <img src="{{ asset('images/team/Tiaq.png') }}" alt="Boss 2" class="member-image">
                     <div class="member-info">
                         <h3 class="member-name">Izdihar Abdul Wahab</h3>
                         <p class="member-designation">Business Development Director</p>
@@ -101,9 +101,9 @@
                     </div>
                 </div>
                 
-                <!-- Boss 2 -->
+                <!-- Boss 3 -->
                 <div class="team-member">
-                    <img src="{{ asset('images/team/Lah.png') }}" alt="Boss 2" class="member-image">
+                    <img src="{{ asset('images/team/Lah.png') }}" alt="Boss 3" class="member-image">
                     <div class="member-info">
                         <h3 class="member-name">Abdullah Egol</h3>
                         <p class="member-designation">Account Manager</p>
@@ -126,9 +126,9 @@
                     </div>
                 </div>
 
-                <!-- Boss 1 -->
+                <!-- Boss 5 -->
                 <div class="team-member">
-                    <img src="{{ asset('images/team/Fatin.png') }}" alt="Boss 1" class="member-image">
+                    <img src="{{ asset('images/team/Fatin.png') }}" alt="Boss 5" class="member-image">
                     <div class="member-info">
                         <h3 class="member-name">Nik Nur Fatin Aisyah</h3>
                         <p class="member-designation">Admin Executive</p>
@@ -138,9 +138,33 @@
                         </p>
                     </div>
                 </div>
-                <!-- Boss 4 -->
+                <!-- Boss 6 -->
                 <div class="team-member">
-                    <img src="{{ asset('images/team/Din.png') }}" alt="Boss 4" class="member-image">
+                    <img src="{{ asset('images/team/Nad.png') }}" alt="Boss 6" class="member-image">
+                    <div class="member-info">
+                        <h3 class="member-name">Nurulnadhirah</h3>
+                        <p class="member-designation">Project Manager</p>
+                        <p class="member-contact">
+                        <a href="mailto:nadhirah@enetech.com.my"><i class="fas fa-envelope"></i></a>
+                        <!--  <a href="https://linkedin.com/in/member8" target="_blank"><i class="fab fa-linkedin"></i></a> -->
+                        </p>
+                    </div>
+                </div>
+                <!-- Boss 7 -->
+                <div class="team-member">
+                    <img src="{{ asset('images/team/Kimi.png') }}" alt="Boss 7" class="member-image">
+                    <div class="member-info">
+                        <h3 class="member-name">Mohamad Rakimi</h3>
+                        <p class="member-designation">Project Manager</p>
+                        <p class="member-contact">
+                        <a href="mailto:rakimi@enetech.com.my"><i class="fas fa-envelope"></i></a>
+                        <!--  <a href="https://linkedin.com/in/member8" target="_blank"><i class="fab fa-linkedin"></i></a> -->
+                        </p>
+                    </div>
+                </div>
+                <!-- Boss 8 -->
+                <div class="team-member">
+                    <img src="{{ asset('images/team/Din.png') }}" alt="Boss 8" class="member-image">
                     <div class="member-info">
                         <h3 class="member-name">Muhd Khairuddin</h3>
                         <p class="member-designation">Technical Manager</p>
@@ -149,8 +173,7 @@
                             <!-- <a href="https://linkedin.com/in/member8" target="_blank"><i class="fab fa-linkedin"></i></a> -->
                         </p>
                     </div>
-                </div>
-                
+                </div>               
             </div>
         </div>
     </section>
@@ -159,7 +182,19 @@
     <section class="section-other-members">
         <div class="container mx-auto">
             <div class="other-members-container">
-                 <!-- Other Member 3 -->
+                <!-- Other Member 2 -->
+                <div class="team-member">
+                    <img src="{{ asset('images/team/Amri.png') }}" alt="Member 2" class="member-image">
+                    <div class="member-info">
+                        <h3 class="member-name">Khairul Amri</h3>
+                        <p class="member-designation">Presales Consultant</p>
+                        <p class="member-contact">
+                            <a href="mailto:amri@enetech.com.my"><i class="fas fa-envelope"></i></a>
+                            <!-- <a href="https://linkedin.com/in/member8" target="_blank"><i class="fab fa-linkedin"></i></a> -->
+                        </p>
+                    </div>
+                </div>
+                <!-- Other Member 3 -->
                 <div class="team-member">
                     <img src="{{ asset('images/team/Ainin.png') }}" alt="Member 3" class="member-image">
                     <div class="member-info">
@@ -183,19 +218,10 @@
                         </p>
                     </div>
                 </div>
-                <br>
-                <!-- Other Member 5 -->
-                <div class="team-member">
-                    <img src="{{ asset('images/team/Kimi.png') }}" alt="Member 5" class="member-image">
-                    <div class="member-info">
-                        <h3 class="member-name">Mohamad Rakimi</h3>
-                        <p class="member-designation">System Engineer</p>
-                        <p class="member-contact">
-                        <a href="mailto:rakimi@enetech.com.my"><i class="fas fa-envelope"></i></a>
-                        <!--  <a href="https://linkedin.com/in/member8" target="_blank"><i class="fab fa-linkedin"></i></a> -->
-                        </p>
-                    </div>
-                </div>
+            </div>
+        </div>
+        <div class="container mx-auto">
+            <div class="other-members-container">
                 <!-- Other Member 6 -->
                 <div class="team-member">
                     <img src="{{ asset('images/team/Shah.png') }}" alt="Member 6" class="member-image">
@@ -225,7 +251,7 @@
                     <img src="{{ asset('images/team/Adam.png') }}" alt="Member 8" class="member-image">
                     <div class="member-info">
                         <h3 class="member-name">Adam Wiryahadi</h3>
-                        <p class="member-designation">Pre-Sales Executive</p>
+                        <p class="member-designation">System Engineer</p>
                         <p class="member-contact">
                             <a href="mailto:m.adam@enetech.com.my"><i class="fas fa-envelope"></i></a>
                             <!--<a href="https://linkedin.com/in/member8" target="_blank"><i class="fab fa-linkedin"></i></a> -->
